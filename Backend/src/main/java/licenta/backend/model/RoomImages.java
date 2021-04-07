@@ -44,11 +44,24 @@ public class RoomImages {
         this.roomforimage = roomid;
     }
 
-    public String getRoomimage() {
-        return  imagepath;
+
+    public void setImageid(long imageid) {
+        this.imageid = imageid;
     }
 
-    public void setRoomimage(String roomimage) {
-        this.imagepath = roomimage;
+    public Room getRoomforimage() {
+        return roomforimage;
+    }
+
+    public void setRoomforimage(Room roomforimage) {
+        this.roomforimage = roomforimage;
+    }
+
+    public String getImagepath() {
+        return imagepath;
+    }
+
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
     }
 }
