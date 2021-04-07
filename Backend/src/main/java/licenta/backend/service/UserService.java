@@ -1,0 +1,52 @@
+package licenta.backend.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import licenta.backend.model.User;
+import licenta.backend.repository.UserRepository;
+
+@Service
+public class UserService implements UserDetailsService {
+
+	@Resource
+	private UserRepository userRepository;
+
+	public UserService(UserRepository u) {
+		userRepository = u;
+	}
+
+	public List<User> findAll() {
+		return userRepository.findAll();
+
+	}
+
+	public User save(User user) {
+
+		return userRepository.save(user);
+	}
+
+	public <T> Optional<User> findById(Long id) {
+		return userRepository.findById(id);
+	}
+
+	public void delete(User user) {
+		userRepository.delete(user);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		User user = userRepository.findByUsername(username);
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
+	}
+
+}
