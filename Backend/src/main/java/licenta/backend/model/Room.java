@@ -54,14 +54,6 @@ public class Room {
 		this.roomtype = roomtype;
 	}
 
-	public String getStatus() {
-		return roomstatus;
-	}
-
-	public void setStatus(String status) {
-		this.roomstatus = status;
-	}
-
 
 
 	public String getName() {
@@ -94,12 +86,16 @@ public class Room {
 	public void setRoomstatus(String roomstatus) {
 		this.roomstatus = roomstatus;
 	}
+
+	public String getRoomstatus() {
+		return roomstatus;
+	}
 @JsonManagedReference
-	public List<RoomImages> getInages() {
+	public List<RoomImages> getImages() {
 		return images;
 	}
 
-	public void setInages(List<RoomImages> inages) {
-		this.images = inages;
+	public void setImages(List<RoomImages> images) {
+		this.images = images;
 	}
 }

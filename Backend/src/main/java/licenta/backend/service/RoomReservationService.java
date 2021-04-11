@@ -34,6 +34,9 @@ public class RoomReservationService {
     public  void delete(RoomReservation roomReservation){
         roomReservationRepository.delete(roomReservation);
     }
+public  List<Long> getNrOfdays(Long id){
+        return  roomReservationRepository.getNrOfDays(id);
+}
 
 
 }

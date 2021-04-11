@@ -3,6 +3,7 @@ package licenta.backend.service;
 import licenta.backend.helpers.RoomDetails;
 import licenta.backend.model.Room;
 import licenta.backend.repository.RoomRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,11 +17,9 @@ import java.util.Optional;
 @Service
 @Transactional
 public class RoomService {
-@Resource
-    public RoomRepository roomRepository;
-
-
-    public RoomService(RoomRepository roomRepository) {
+    @Resource
+     public RoomRepository roomRepository;
+     public RoomService(RoomRepository roomRepository) {
         this.roomRepository = roomRepository;
     }
     public List<Room> findAll(){
@@ -34,7 +33,7 @@ public class RoomService {
 
         return roomRepository.save(room);
     }
-    public  <T> Optional<Room> findById(Long id){
+    public <T> Optional<Room> findById(Long id){
         return  roomRepository.findById(id);
     }
     public  void delete(Room room){

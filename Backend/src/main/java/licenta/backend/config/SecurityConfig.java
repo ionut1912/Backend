@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpRange;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -65,6 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
 				.antMatchers(HttpMethod.GET, "/room/{checkin}/{checkout}").permitAll()
 				.antMatchers(HttpMethod.GET, "/room/images").permitAll()
+				.antMatchers(HttpMethod.GET,"/room/{id}").permitAll()
+				.antMatchers(HttpMethod.GET,"room/days/{id}").permitAll()
+
 				.anyRequest().authenticated();
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

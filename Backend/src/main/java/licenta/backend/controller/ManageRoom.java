@@ -1,15 +1,16 @@
 package licenta.backend.controller;
 
 
+import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.RoomDetails;
 import licenta.backend.model.Room;
 
 import licenta.backend.model.RoomImages;
 import licenta.backend.service.RoomImageService;
+import licenta.backend.service.RoomReservationService;
 import licenta.backend.service.RoomService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.parameters.P;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
@@ -22,8 +23,10 @@ import java.util.List;
 public class ManageRoom {
     @Resource
     RoomImageService roomImageService;
-@Autowired
+    @Resource
     RoomService roomService;
+    @Resource
+    RoomReservationService roomReservationService;
 
 
     @GetMapping
@@ -36,6 +39,13 @@ public class ManageRoom {
     {
         return  roomService.getInfo(checkin,checkout);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Room> getRoomById(@PathVariable Long id)
+    {
+        Room room=roomService.findById(id).orElseThrow(()-> new ResourceNotFoundException("Camera cu id-ul " +id+ " nu exista "));
+      return  ResponseEntity.ok(room);
+    }
+
     @GetMapping("/images")
     public List<RoomImages> fiindAll(){
         return  roomImageService.finAll();
@@ -43,5 +53,9 @@ public class ManageRoom {
     @GetMapping("/images/{id}")
     public  List<RoomImages>findById(@PathVariable int id){
         return  roomImageService.findImageById(id);
+    }
+    @GetMapping("days/{id}")
+    public  List<Long> getNrOfDays(@PathVariable Long id){
+        return  roomReservationService.getNrOfdays(id);
     }
 }
