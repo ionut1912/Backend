@@ -6,13 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 
 @Repository
 public interface RoomReservationRepository extends JpaRepository<RoomReservation,Long> {
-    @Query(value = "select datediff(checkout, checkin) from roomreservations  where roomid= ?1",nativeQuery = true)
-    List<Long> getNrOfDays(Long id);
+    @Query(value = "select datediff(?2, ?1)",nativeQuery = true)
+  int  getNrOfDays(Date checkin,Date checkout);
 
 
 

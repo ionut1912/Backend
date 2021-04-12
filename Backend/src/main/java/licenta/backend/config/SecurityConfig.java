@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/room/{checkin}/{checkout}").permitAll()
 				.antMatchers(HttpMethod.GET, "/room/images").permitAll()
 				.antMatchers(HttpMethod.GET,"/room/{id}").permitAll()
-				.antMatchers(HttpMethod.GET,"room/days/{id}").permitAll()
+				.antMatchers(HttpMethod.GET,"room/days/{checkin}/{checkout}").permitAll()
 
 				.anyRequest().authenticated();
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

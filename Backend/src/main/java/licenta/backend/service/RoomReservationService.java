@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -34,8 +35,8 @@ public class RoomReservationService {
     public  void delete(RoomReservation roomReservation){
         roomReservationRepository.delete(roomReservation);
     }
-public  List<Long> getNrOfdays(Long id){
-        return  roomReservationRepository.getNrOfDays(id);
+public  int getNrOfdays(Date checkin,Date checkout){
+        return  roomReservationRepository.getNrOfDays(checkin,checkout);
 }
 
 

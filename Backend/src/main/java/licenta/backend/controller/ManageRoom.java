@@ -54,8 +54,8 @@ public class ManageRoom {
     public  List<RoomImages>findById(@PathVariable int id){
         return  roomImageService.findImageById(id);
     }
-    @GetMapping("days/{id}")
-    public  List<Long> getNrOfDays(@PathVariable Long id){
-        return  roomReservationService.getNrOfdays(id);
+    @GetMapping("days/{checkin}/{checkout}")
+    public int  getNrOfDays(@PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date checkin, @PathVariable  @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date checkout ){
+        return  roomReservationService.getNrOfdays(checkin,checkout);
     }
 }
