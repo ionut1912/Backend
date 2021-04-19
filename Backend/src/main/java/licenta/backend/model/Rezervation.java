@@ -28,8 +28,7 @@ public class  Rezervation {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "phone")
-	private String phone;
+
 
 	@Column(name = "email")
 	private String email;
@@ -91,13 +90,9 @@ public class  Rezervation {
 		this.checkout = checkout;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+
+
 
 	public String getEmail() {
 		return email;

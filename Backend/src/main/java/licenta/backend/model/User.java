@@ -44,9 +44,13 @@ public class User implements UserDetails {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	@JsonManagedReference("user-reservation")
 	private List<Rezervation> rezervations;
-
+@OneToMany(cascade = CascadeType.ALL,mappedBy = "userreview")
+@JsonManagedReference("user-review")
+private List<UserReview> reviews;
 	private boolean enabled;
 
+@Column(name = "hotelriview")
+private  String hotelriview;
 	public User()
 	{
 	}
@@ -103,7 +107,6 @@ public class User implements UserDetails {
 	public List<Rezervation> getRezervations() {
 		return rezervations;
 	}
-
 	public void setRezervations(List<Rezervation> rezervations) {
 		this.rezervations = rezervations;
 	}
@@ -164,5 +167,23 @@ public class User implements UserDetails {
 	@Override
 	public int hashCode() {
 		return Objects.hash(userid, name, email, username, password, type, rezervations, enabled);
+	}
+
+
+
+	public String getHotelriview() {
+		return hotelriview;
+	}
+
+	public void setHotelriview(String hotelriview) {
+		this.hotelriview = hotelriview;
+	}
+@JsonManagedReference
+	public List<UserReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<UserReview> reviews) {
+		this.reviews = reviews;
 	}
 }

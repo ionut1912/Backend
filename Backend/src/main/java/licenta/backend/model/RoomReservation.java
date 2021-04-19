@@ -53,8 +53,7 @@ public class RoomReservation {
 	@Column(name = "noofchildrens")
 	private int noofchildrens;
 
-	@Column(name = "childrenage")
-	private String childrenage;
+
 
 	public long getRoomreservationsid() {
 		return roomreservationsid;
@@ -127,11 +126,5 @@ public class RoomReservation {
 		this.noofchildrens = noofchildrens;
 	}
 
-	public String getChildrenage() {
-		return childrenage;
-	}
 
-	public void setChildrenage(String childrenage) {
-		this.childrenage = childrenage;
-	}
 }
