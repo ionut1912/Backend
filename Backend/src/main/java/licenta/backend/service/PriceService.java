@@ -1,5 +1,6 @@
 package licenta.backend.service;
 
+import licenta.backend.helpers.TotalPrice;
 import licenta.backend.model.Price;
 import licenta.backend.repository.PriceRepository;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,5 +36,8 @@ public class PriceService {
     }
     public  void delete(Price price){
         priceRepository.delete(price);
+    }
+    public TotalPrice getTotalPrice(Date checkin, Date checkout, int priceid){
+        return  priceRepository.getFinalPrice(checkin,checkout,priceid);
     }
 }

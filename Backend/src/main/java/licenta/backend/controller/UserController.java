@@ -1,5 +1,6 @@
 package licenta.backend.controller;
 import licenta.backend.exception.ResourceNotFoundException;
+import licenta.backend.helpers.UserData;
 import licenta.backend.model.User;
 import licenta.backend.service.UserService;
 
@@ -58,5 +59,12 @@ public class UserController {
       response.put("deleted",Boolean.TRUE);
       return ResponseEntity.ok(response);
     }
+    @GetMapping("/user1/{username}")
+    public UserData getUserData(@PathVariable String username)
+    {
+        return  userService.getData(username);
+    }
+
+
 }
 

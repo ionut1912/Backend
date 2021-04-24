@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import licenta.backend.helpers.UserData;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,5 +49,7 @@ public class UserService implements UserDetailsService {
 		User user = userRepository.findByUsername(username);
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
 	}
-
+public  UserData getData(String username){
+		return  userRepository.getUserDetails(username);
+}
 }

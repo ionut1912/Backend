@@ -29,6 +29,7 @@ public class RoomService {
     public  List<RoomDetails> getInfo(Date checkin, Date checkout) {
         return roomRepository.getRoomInfo(checkin, checkout);
     }
+
     public Room save(Room room){
 
         return roomRepository.save(room);

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,66 +33,66 @@ import licenta.backend.service.UserService;
 @RequestMapping("/auth")
 public class AuthController {
 
-	@Resource
+    @Resource
 
-	AuthenticationManager authenticationManager;
-	@Resource
+    AuthenticationManager authenticationManager;
+    @Resource
 
-	UserRepository userRepository;
-	@Resource
+    UserRepository userRepository;
+    @Resource
 
-	PasswordEncoder encoder;
-	@Resource
+    PasswordEncoder encoder;
+    @Resource
 
-	UserService userService;
-	@Resource
+    UserService userService;
+    @Resource
 
-	JwtUtils jwtUtils;
+    JwtUtils jwtUtils;
 
-	@PostMapping("/signin")
-	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    @PostMapping("/signin")
+    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-		Authentication authentication;
-		authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        Authentication authentication;
+        authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		org.springframework.security.core.userdetails.User userDetails =
-				(org.springframework.security.core.userdetails.User) authentication.getPrincipal();
-		List<String> roles = userDetails.getAuthorities().stream()
-				.map(GrantedAuthority::getAuthority)
-				.collect(Collectors.toList());
+        org.springframework.security.core.userdetails.User userDetails =
+                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
 
-		return ResponseEntity.ok(new JwtResponse(jwtUtils.generateJwtToken(authentication),
-				userDetails.getUsername(),
-				roles));
-	}
+        return ResponseEntity.ok(new JwtResponse(jwtUtils.generateJwtToken(authentication),
+                userDetails.getUsername(),
+                roles));
+    }
 
-	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Numele de utilizator  este existent!"));
-		}
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Numele de utilizator  este existent!"));
+        }
 
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Email-ul este existent!"));
-		}
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email-ul este existent!"));
+        }
 
-		User user = new User(signUpRequest.getName(), signUpRequest.getEmail(), signUpRequest.getUsername(),
+        User user = new User(signUpRequest.getName(), signUpRequest.getEmail(), signUpRequest.getUsername(),
 
-				encoder.encode(signUpRequest.getPassword()));
-
-
-            user.setType(Erole.ROLE_USER);
-            user.setEnabled(true);
+                encoder.encode(signUpRequest.getPassword()));
 
 
-		userService.save(user);
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-	}
+        user.setType(Erole.ROLE_USER);
+        user.setEnabled(true);
+
+
+        userService.save(user);
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
 }

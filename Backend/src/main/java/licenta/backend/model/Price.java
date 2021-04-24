@@ -1,6 +1,6 @@
 package licenta.backend.model;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,16 +23,12 @@ public class Price {
 	private long priceid;
 
 	@Column(name = "price")
-	private double price;
+	private double prices;
 
 	@Column(name = "type")
 	private String type;
 
-	@Column(name = "checkin")
-	private Date checkin;
 
-	@Column(name = "checkout")
-	private Date checkout;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "price")
 	@JsonManagedReference("price-roomReservation")
@@ -47,28 +43,14 @@ public class Price {
 	}
 
 	public double getPrice() {
-		return price;
+		return prices;
 	}
 
 	public void setPrice(double price) {
-		this.price = price;
+		this.prices = price;
 	}
 
-	public Date getCheckin() {
-		return checkin;
-	}
 
-	public void setCheckin(Date checkin) {
-		this.checkin = checkin;
-	}
-
-	public Date getCheckout() {
-		return checkout;
-	}
-
-	public void setCheckout(Date checkout) {
-		this.checkout = checkout;
-	}
 
 	public String getType() {
 		return type;
@@ -85,4 +67,5 @@ public class Price {
 	public void setRoomReservationList(List<RoomReservation> roomReservationList) {
 		this.roomReservationList = roomReservationList;
 	}
+
 }

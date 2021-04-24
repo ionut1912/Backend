@@ -1,7 +1,7 @@
 package licenta.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import javax.persistence.*;
 
@@ -10,17 +10,17 @@ import javax.persistence.*;
 public class UserReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int userreviewid;
+    private int userreviewid;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="userid")
+    @JoinColumn(name = "userid")
     @JsonBackReference("user-review")
-    private  User userreview;
+    private User userreviews;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="roomid")
+    @JoinColumn(name = "roomid")
     @JsonBackReference("room-review")
-    private  Room roomreview;
+    private Room roomreview;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="reviewid")
+    @JoinColumn(name = "reviewid")
     @JsonBackReference("review")
     private Review review;
 
@@ -32,7 +32,7 @@ public class UserReview {
         this.userreviewid = userreviewid;
     }
 
-@JsonBackReference
+    @JsonBackReference
     public Room getRoomreview() {
         return roomreview;
     }
@@ -40,7 +40,8 @@ public class UserReview {
     public void setRoomreview(Room roomreview) {
         this.roomreview = roomreview;
     }
-@JsonBackReference
+
+    @JsonBackReference
     public Review getReview() {
         return review;
     }
@@ -48,12 +49,13 @@ public class UserReview {
     public void setReview(Review review) {
         this.review = review;
     }
-@JsonBackReference
+
+    @JsonBackReference
     public User getUserreview() {
-        return userreview;
+        return userreviews;
     }
 
     public void setUserreview(User userreview) {
-        this.userreview = userreview;
+        this.userreviews = userreview;
     }
 }

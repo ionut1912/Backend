@@ -1,0 +1,23 @@
+package licenta.backend.controller;
+
+import licenta.backend.helpers.TotalPrice;
+import licenta.backend.service.PriceService;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/prices")
+public class PriceController {
+    @Resource
+    private PriceService priceService;
+    @GetMapping("/{checkin}/{checkout}/{id}")
+    private TotalPrice getTotalPrice(@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin,@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout,@PathVariable int id){
+        return  priceService.getTotalPrice(checkin,checkout,id);
+    }
+}

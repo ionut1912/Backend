@@ -49,9 +49,7 @@ public class RoomImages {
         this.imageid = imageid;
     }
 
-    public Room getRoomforimage() {
-        return roomforimage;
-    }
+
 
     public void setRoomforimage(Room roomforimage) {
         this.roomforimage = roomforimage;
