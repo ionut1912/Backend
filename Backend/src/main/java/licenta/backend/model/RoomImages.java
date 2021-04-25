@@ -45,9 +45,7 @@ public class RoomImages {
     }
 
 
-    public void setImageid(long imageid) {
-        this.imageid = imageid;
-    }
+
 
 
 
