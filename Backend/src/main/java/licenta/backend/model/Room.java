@@ -31,7 +31,7 @@ public class Room {
     @JsonManagedReference("room")
     private List<RoomImages> images;
     @JsonIgnore
-    @JsonManagedReference("room-roomReservation")
+    @JsonManagedReference("roomReservation")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
 
     private List<RoomReservation> roomReservations;

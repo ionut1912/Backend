@@ -47,6 +47,7 @@ public class User implements UserDetails {
 @OneToMany(cascade = CascadeType.ALL,mappedBy = "userreviews")
 @JsonManagedReference("user-review")
 private List<UserReview> reviews;
+
 	private boolean enabled;
 
 @Column(name = "hotelriview")

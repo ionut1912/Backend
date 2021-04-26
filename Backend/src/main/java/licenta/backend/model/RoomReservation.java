@@ -24,7 +24,7 @@ public class RoomReservation {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "roomid")
-	@JsonBackReference("room-roomReservation")
+	@JsonBackReference("roomReservation")
 	private Room room;
 
 	@ManyToOne(cascade = CascadeType.ALL)
