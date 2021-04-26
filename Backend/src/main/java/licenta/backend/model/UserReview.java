@@ -2,7 +2,6 @@ package licenta.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
 import javax.persistence.*;
 
 @Table(name = "userreviews")

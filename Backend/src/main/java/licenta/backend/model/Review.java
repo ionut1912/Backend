@@ -10,14 +10,14 @@ import java.util.List;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int reviewid;
-    @Column(name="reviewtitle")
-    private  String  reviewtitle;
-    @Column(name ="reviewtext")
-    private  String reviewtext;
-@OneToMany(cascade = CascadeType.ALL,mappedBy = "review")
-@JsonManagedReference("review")
-public List<UserReview> userReviews;
+    private int reviewid;
+    @Column(name = "reviewtitle")
+    private String reviewtitle;
+    @Column(name = "reviewtext")
+    private String reviewtext;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "review")
+    @JsonManagedReference("review")
+    public List<UserReview> userReviews;
 
     public int getReviewid() {
         return reviewid;
@@ -42,7 +42,8 @@ public List<UserReview> userReviews;
     public void setReviewtext(String reviewtext) {
         this.reviewtext = reviewtext;
     }
-@JsonManagedReference
+
+    @JsonManagedReference
     public List<UserReview> getUserReviews() {
         return userReviews;
     }

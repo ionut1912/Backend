@@ -37,11 +37,12 @@ public class ManageRoomController {
     public List<RoomDetails> roomInfo(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout) {
         return roomService.getInfo(checkin, checkout);
     }
-@GetMapping("/all")
-public  List<Room> getAll()
-{
-    return  roomService.findAll();
-}
+
+    @GetMapping("/all")
+    public List<Room> getAll() {
+        return roomService.findAll();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Room> getRoomById(@PathVariable Long id) {
         Room room = roomService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Camera cu id-ul " + id + " nu exista "));

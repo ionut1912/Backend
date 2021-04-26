@@ -1,190 +1,181 @@
 package licenta.backend.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
 
 public class User implements UserDetails {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long userid;
-	@Column(name = "name")
-	private String name;
-	@Column(name = "email")
-	private String email;
-	@Column(name = "username")
-	private String username;
-	@Column(name = "password")
-	private String password;
-	@Column(name = "type")
-	@Enumerated(EnumType.STRING)
-	private Erole type;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	@JsonManagedReference("user-reservation")
-	private List<Rezervation> rezervations;
-@OneToMany(cascade = CascadeType.ALL,mappedBy = "userreviews")
-@JsonManagedReference("user-review")
-private List<UserReview> reviews;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long userid;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private Erole type;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonManagedReference("user-reservation")
+    private List<Rezervation> rezervations;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userreviews")
+    @JsonManagedReference("user-review")
+    private List<UserReview> reviews;
 
-	private boolean enabled;
+    private boolean enabled;
 
-@Column(name = "hotelriview")
-private  String hotelriview;
-	public User()
-	{
-	}
+    @Column(name = "hotelriview")
+    private String hotelriview;
 
-	public User(String name, String email, String username, String password) {
-		this.name = name;
-		this.email = email;
-		this.username = username;
-		this.password = password;
-	}
+    public User() {
+    }
 
-	public long getUserid() {
-		return userid;
-	}
+    public User(String name, String email, String username, String password) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
 
-	public void setUserid(long userid) {
-		this.userid = userid;
-	}
+    public long getUserid() {
+        return userid;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setUserid(long userid) {
+        this.userid = userid;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	@Override
-	public String getUsername() {
-		return username;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
-	@Override
-	public String getPassword() {
-		return password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-@JsonManagedReference
-	public List<Rezervation> getRezervations() {
-		return rezervations;
-	}
-	public void setRezervations(List<Rezervation> rezervations) {
-		this.rezervations = rezervations;
-	}
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-	public Erole getType() {
-		return type;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setType(Erole type) {
-		this.type = type;
-	}
+    @JsonManagedReference
+    public List<Rezervation> getRezervations() {
+        return rezervations;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public void setRezervations(List<Rezervation> rezervations) {
+        this.rezervations = rezervations;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public Erole getType() {
+        return type;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(this.type.name()));
+    public void setType(Erole type) {
+        this.type = type;
+    }
 
-		return authorities;
-	}
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(this.type.name()));
 
-		return true;
-	}
+        return authorities;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		User user = (User) o;
-		return Objects.equals(userid, user.userid);
-	}
+    @Override
+    public boolean isAccountNonLocked() {
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(userid, name, email, username, password, type, rezervations, enabled);
-	}
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(userid, user.userid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userid, name, email, username, password, type, rezervations, enabled);
+    }
 
 
+    public String getHotelriview() {
+        return hotelriview;
+    }
 
-	public String getHotelriview() {
-		return hotelriview;
-	}
+    public void setHotelriview(String hotelriview) {
+        this.hotelriview = hotelriview;
+    }
 
-	public void setHotelriview(String hotelriview) {
-		this.hotelriview = hotelriview;
-	}
-@JsonManagedReference
-	public List<UserReview> getReviews() {
-		return reviews;
-	}
+    @JsonManagedReference
+    public List<UserReview> getReviews() {
+        return reviews;
+    }
 
-	public void setReviews(List<UserReview> reviews) {
-		this.reviews = reviews;
-	}
+    public void setReviews(List<UserReview> reviews) {
+        this.reviews = reviews;
+    }
 }

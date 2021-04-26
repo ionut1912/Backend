@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="roomimages" )
+@Table(name = "roomimages")
 
 public class RoomImages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  long imageid;
+    private long imageid;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "roomid")
     @JsonBackReference("room")
-    private  Room roomforimage;
+    private Room roomforimage;
     @Column(name = "imagepath")
-     private  String imagepath;
+    private String imagepath;
 
     public RoomImages(int imageid, Room roomid, String roomimage) {
         this.imageid = imageid;
-        this.roomforimage= roomid;
-        this.imagepath= roomimage;
+        this.roomforimage = roomid;
+        this.imagepath = roomimage;
     }
 
     public RoomImages() {
@@ -35,7 +35,8 @@ public class RoomImages {
     public void setImageid(int imageid) {
         this.imageid = imageid;
     }
-@JsonBackReference
+
+    @JsonBackReference
     public Room getRoomid() {
         return roomforimage;
     }
@@ -43,10 +44,6 @@ public class RoomImages {
     public void setRoomid(Room roomid) {
         this.roomforimage = roomid;
     }
-
-
-
-
 
 
     public void setRoomforimage(Room roomforimage) {

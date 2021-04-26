@@ -1,130 +1,125 @@
 package licenta.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "roomreservations")
 
 public class RoomReservation {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long roomreservationsid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long roomreservationsid;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "roomid")
-	@JsonBackReference("roomReservation")
-	private Room room;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "roomid")
+    @JsonBackReference("roomReservation")
+    private Room room;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "priceid")
-	@JsonBackReference("price-roomReservation")
-	private Price price;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "priceid")
+    @JsonBackReference("price-roomReservation")
+    private Price price;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "reservationid")
-	@JsonBackReference("reservation-roomReservation")
-	private Rezervation rezervation;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reservationid")
+    @JsonBackReference("reservation-roomReservation")
+    private Rezervation rezervation;
 
-	@Column(name = "checkin")
-	private Date checkin;
+    @Column(name = "checkin")
+    private Date checkin;
 
-	@Column(name = "checkout")
-	private Date checkout;
+    @Column(name = "checkout")
+    private Date checkout;
 
-	@Column(name = "noofrooms")
-	private int noofrooms;
-
-
-	@Column(name = "noofadults")
-	private int noofadults;
-
-	@Column(name = "noofchildrens")
-	private int noofchildrens;
+    @Column(name = "noofrooms")
+    private int noofrooms;
 
 
+    @Column(name = "noofadults")
+    private int noofadults;
 
-	public long getRoomreservationsid() {
-		return roomreservationsid;
-	}
+    @Column(name = "noofchildrens")
+    private int noofchildrens;
 
-	public void setRoomreservationsid(long roomreservationsid) {
-		this.roomreservationsid = roomreservationsid;
-	}
-@JsonBackReference
-	public Room getRoom() {
-		return room;
-	}
 
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-@JsonBackReference
-	public Price getPrice() {
-		return price;
-	}
+    public long getRoomreservationsid() {
+        return roomreservationsid;
+    }
 
-	public void setPrice(Price price) {
-		this.price = price;
-	}
-@JsonBackReference
-	public Rezervation getRezervation() {
-		return rezervation;
-	}
+    public void setRoomreservationsid(long roomreservationsid) {
+        this.roomreservationsid = roomreservationsid;
+    }
 
-	public void setRezervation(Rezervation rezervation) {
-		this.rezervation = rezervation;
-	}
+    @JsonBackReference
+    public Room getRoom() {
+        return room;
+    }
 
-	public Date getCheckin() {
-		return checkin;
-	}
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
-	public void setCheckin(Date checkin) {
-		this.checkin = checkin;
-	}
+    @JsonBackReference
+    public Price getPrice() {
+        return price;
+    }
 
-	public Date getCheckout() {
-		return checkout;
-	}
+    public void setPrice(Price price) {
+        this.price = price;
+    }
 
-	public void setCheckout(Date checkout) {
-		this.checkout = checkout;
-	}
-	public int getNoofrooms() {
-		return noofrooms;
-	}
+    @JsonBackReference
+    public Rezervation getRezervation() {
+        return rezervation;
+    }
 
-	public void setNoofrooms(int noofrooms) {
-		this.noofrooms = noofrooms;
-	}
+    public void setRezervation(Rezervation rezervation) {
+        this.rezervation = rezervation;
+    }
 
-	public int getNoofadults() {
-		return noofadults;
-	}
+    public Date getCheckin() {
+        return checkin;
+    }
 
-	public void setNoofadults(int noofadults) {
-		this.noofadults = noofadults;
-	}
+    public void setCheckin(Date checkin) {
+        this.checkin = checkin;
+    }
 
-	public int getNoofchildrens() {
-		return noofchildrens;
-	}
+    public Date getCheckout() {
+        return checkout;
+    }
 
-	public void setNoofchildrens(int noofchildrens) {
-		this.noofchildrens = noofchildrens;
-	}
+    public void setCheckout(Date checkout) {
+        this.checkout = checkout;
+    }
+
+    public int getNoofrooms() {
+        return noofrooms;
+    }
+
+    public void setNoofrooms(int noofrooms) {
+        this.noofrooms = noofrooms;
+    }
+
+    public int getNoofadults() {
+        return noofadults;
+    }
+
+    public void setNoofadults(int noofadults) {
+        this.noofadults = noofadults;
+    }
+
+    public int getNoofchildrens() {
+        return noofchildrens;
+    }
+
+    public void setNoofchildrens(int noofchildrens) {
+        this.noofchildrens = noofchildrens;
+    }
 
 
 }

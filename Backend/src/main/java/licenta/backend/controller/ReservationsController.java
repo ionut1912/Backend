@@ -4,7 +4,6 @@ import licenta.backend.model.Rezervation;
 import licenta.backend.model.RoomReservation;
 import licenta.backend.service.RezervationService;
 import licenta.backend.service.RoomReservationService;
-
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,12 +16,14 @@ public class ReservationsController {
     RezervationService rezervationService;
     @Resource
     RoomReservationService roomReservationService;
+
     @PostMapping
-    private Rezervation createRezervation(@RequestBody Rezervation rezervation){
-        return  rezervationService.save(rezervation);
+    private Rezervation createRezervation(@RequestBody Rezervation rezervation) {
+        return rezervationService.save(rezervation);
     }
+
     @PostMapping("/roomreservations")
-    private RoomReservation createRoomRezervations(@RequestBody RoomReservation roomReservation){
-        return  roomReservationService.save(roomReservation);
+    private RoomReservation createRoomRezervations(@RequestBody RoomReservation roomReservation) {
+        return roomReservationService.save(roomReservation);
     }
 }

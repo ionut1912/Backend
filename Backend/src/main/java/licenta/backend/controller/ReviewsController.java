@@ -13,9 +13,9 @@ import java.util.List;
 public class ReviewsController {
     @Resource
     UserReviewService userReviewService;
+
     @GetMapping("/{id}")
-    public List<ReviewDetails> getAll(@PathVariable int id)
-    {
-        return  userReviewService.getAll(id);
+    public List<ReviewDetails> getAll(@PathVariable int id) {
+        return userReviewService.getAll(id);
     }
 }

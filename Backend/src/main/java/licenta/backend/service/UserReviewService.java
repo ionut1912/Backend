@@ -9,9 +9,10 @@ import java.util.List;
 
 @Service
 public class UserReviewService {
-@Resource
+    @Resource
     UserReviewRepository userReviewRepository;
-public List<ReviewDetails> getAll(int id){
-   return  userReviewRepository.getReviews(id);
-}
+
+    public List<ReviewDetails> getAll(int id) {
+        return userReviewRepository.getReviews(id);
+    }
 }

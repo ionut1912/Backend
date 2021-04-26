@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserReviewRepository extends JpaRepository<UserReview,Long>
-{
-    @Query(value = "select name,reviewtitle,reviewtext from userreviews inner join reviews on userreviews.reviewid=reviews.reviewid inner join users on userreviews.userid=users.userid where roomid=?1",nativeQuery = true)
+public interface UserReviewRepository extends JpaRepository<UserReview, Long> {
+    @Query(value = "select name,reviewtitle,reviewtext from userreviews inner join reviews on userreviews.reviewid=reviews.reviewid inner join users on userreviews.userid=users.userid where roomid=?1", nativeQuery = true)
     List<ReviewDetails> getReviews(int id);
 }

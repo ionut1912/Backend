@@ -1,55 +1,54 @@
 package licenta.backend.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
-
 import licenta.backend.helpers.UserData;
+import licenta.backend.model.User;
+import licenta.backend.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import licenta.backend.model.User;
-import licenta.backend.repository.UserRepository;
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
 
-	@Resource
-	private UserRepository userRepository;
+    @Resource
+    private UserRepository userRepository;
 
-	public UserService(UserRepository u) {
-		userRepository = u;
-	}
+    public UserService(UserRepository u) {
+        userRepository = u;
+    }
 
-	public List<User> findAll() {
-		return userRepository.findAll();
+    public List<User> findAll() {
+        return userRepository.findAll();
 
-	}
+    }
 
-	public User save(User user) {
 
-		return userRepository.save(user);
-	}
+    public User save(User user) {
 
-	public <T> Optional<User> findById(Long id) {
-		return userRepository.findById(id);
-	}
+        return userRepository.save(user);
+    }
 
-	public void delete(User user) {
-		userRepository.delete(user);
-	}
+    public <T> Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
 
-		User user = userRepository.findByUsername(username);
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
-	}
-public  UserData getData(String username){
-		return  userRepository.getUserDetails(username);
-}
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        User user = userRepository.findByUsername(username);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
+    }
+
+    public UserData getData(String username) {
+        return userRepository.getUserDetails(username);
+    }
 }
