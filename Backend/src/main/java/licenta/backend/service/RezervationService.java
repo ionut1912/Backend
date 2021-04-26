@@ -1,5 +1,6 @@
 package licenta.backend.service;
 
+import licenta.backend.helpers.ReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.repository.RezervationRepository;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
+
 public class RezervationService {
     @Resource
     public RezervationRepository rezervationRepository;
@@ -24,9 +25,9 @@ public class RezervationService {
 
     }
 
-    public Rezervation save(Rezervation rezervation) {
+    public ReservationHelper save(ReservationHelper rezervation) {
 
-        return rezervationRepository.save(rezervation);
+        return rezervationRepository.saveHelper(rezervation);
     }
 
     public <T> Optional<Rezervation> findById(Long id) {
@@ -36,4 +37,8 @@ public class RezervationService {
     public void delete(Rezervation rezervation) {
         rezervationRepository.delete(rezervation);
     }
+
+
+
 }
+

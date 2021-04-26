@@ -1,6 +1,6 @@
 package licenta.backend.controller;
 
-import licenta.backend.model.Rezervation;
+import licenta.backend.helpers.ReservationHelper;
 import licenta.backend.model.RoomReservation;
 import licenta.backend.service.RezervationService;
 import licenta.backend.service.RoomReservationService;
@@ -12,15 +12,16 @@ import javax.annotation.Resource;
 @CrossOrigin(origins = "*")
 @RequestMapping("/reservations")
 public class ReservationsController {
-    @Resource
+@Resource
     RezervationService rezervationService;
     @Resource
     RoomReservationService roomReservationService;
 
-    @PostMapping
-    private Rezervation createRezervation(@RequestBody Rezervation rezervation) {
-        return rezervationService.save(rezervation);
-    }
+
+@PostMapping
+private ReservationHelper saveReservatopm(@RequestBody ReservationHelper helper){
+   return rezervationService.save(helper);
+}
 
     @PostMapping("/roomreservations")
     private RoomReservation createRoomRezervations(@RequestBody RoomReservation roomReservation) {
