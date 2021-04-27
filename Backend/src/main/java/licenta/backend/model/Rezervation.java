@@ -44,6 +44,16 @@ public class Rezervation {
     @JsonManagedReference("reservation-roomReservation")
     private List<RoomReservation> roomReservations;
 
+    public Rezervation(String name, String email, String roomtype, Date checkin, Date checkout, boolean deleted, User user) {
+        this.name = name;
+        this.email = email;
+        this.roomtype = roomtype;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.deleted = deleted;
+        this.user = user;
+    }
+
 
     public long getRezervationid() {
         return reservationid;

@@ -6,7 +6,7 @@ import licenta.backend.repository.RezervationRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +25,10 @@ public class RezervationService {
 
     }
 
-    public ReservationHelper saveHelper(ReservationHelper rezervation) {
-
-        return rezervationRepository.saveHelper(rezervation);
-    }
-
+   public ReservationHelper saveReservation(String name, String email, String roomtype, Date checkin,Date checkout,boolean deleted,Long userid )
+   {
+       return  rezervationRepository.saveReservation(name,email,roomtype,checkin,checkout,deleted,userid);
+   }
     public <T> Optional<Rezervation> findById(Long id) {
         return rezervationRepository.findById(id);
     }
