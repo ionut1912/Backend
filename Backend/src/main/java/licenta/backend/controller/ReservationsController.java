@@ -1,6 +1,7 @@
 package licenta.backend.controller;
 
 import licenta.backend.helpers.ReservationHelper;
+import licenta.backend.model.Rezervation;
 import licenta.backend.model.RoomReservation;
 import licenta.backend.service.RezervationService;
 import licenta.backend.service.RoomReservationService;
@@ -14,22 +15,17 @@ import java.util.Date;
 @CrossOrigin(origins = "*")
 @RequestMapping("/reservations")
 public class ReservationsController {
-    @Resource
-    RezervationService helperService;
-    @Resource
-    RoomReservationService roomReservationService;
-
+@Resource
+RezervationService rezervationService;
 @PostMapping
-
-public ReservationHelper save(@RequestBody String name, @RequestBody String email, @RequestBody String roomtype, @RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin,@RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout,@RequestBody boolean deleted ,@RequestBody Long userid ){
-
-return  helperService.saveReservation(name,email,roomtype,checkin,checkout,deleted,userid);
+    public Rezervation saveReservation(@RequestBody ReservationHelper helper)
+{
+    Rezervation rezervation=new Rezervation(helper.getName(),helper.getEmail(),helper.getRoomtype(),helper.getCheckin(),helper.getCheckout(),helper.isDeleted(),helper.getUser());
+    return  rezervationService.save(rezervation);
 }
 
 
 
-    @PostMapping("/roomreservations")
-    private RoomReservation createRoomRezervations(@RequestBody RoomReservation roomReservation) {
-        return roomReservationService.save(roomReservation);
-    }
+
+
 }

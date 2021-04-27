@@ -1,6 +1,6 @@
 package licenta.backend.service;
 
-import licenta.backend.helpers.ReservationHelper;
+import licenta.backend.model.Price;
 import licenta.backend.model.Rezervation;
 import licenta.backend.repository.RezervationRepository;
 import org.springframework.stereotype.Service;
@@ -25,10 +25,10 @@ public class RezervationService {
 
     }
 
-   public ReservationHelper saveReservation(String name, String email, String roomtype, Date checkin,Date checkout,boolean deleted,Long userid )
-   {
-       return  rezervationRepository.saveReservation(name,email,roomtype,checkin,checkout,deleted,userid);
-   }
+  public Rezervation save(Rezervation rezervation) {
+
+        return rezervationRepository.save(rezervation);
+    }
     public <T> Optional<Rezervation> findById(Long id) {
         return rezervationRepository.findById(id);
     }
