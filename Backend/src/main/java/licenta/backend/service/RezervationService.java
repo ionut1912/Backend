@@ -25,7 +25,7 @@ public class RezervationService {
 
     }
 
-    public ReservationHelper save(ReservationHelper rezervation) {
+    public ReservationHelper saveHelper(ReservationHelper rezervation) {
 
         return rezervationRepository.saveHelper(rezervation);
     }

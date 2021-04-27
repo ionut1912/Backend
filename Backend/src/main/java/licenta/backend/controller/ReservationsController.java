@@ -12,16 +12,16 @@ import javax.annotation.Resource;
 @CrossOrigin(origins = "*")
 @RequestMapping("/reservations")
 public class ReservationsController {
-@Resource
-    RezervationService rezervationService;
+    @Resource
+    RezervationService helperService;
     @Resource
     RoomReservationService roomReservationService;
 
 
-@PostMapping
-private ReservationHelper saveReservatopm(@RequestBody ReservationHelper helper){
-   return rezervationService.save(helper);
-}
+    @PostMapping
+    private ReservationHelper saveReservation(@RequestBody ReservationHelper helper) {
+        return helperService.saveHelper(helper);
+    }
 
     @PostMapping("/roomreservations")
     private RoomReservation createRoomRezervations(@RequestBody RoomReservation roomReservation) {

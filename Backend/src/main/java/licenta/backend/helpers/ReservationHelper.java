@@ -4,19 +4,20 @@ package licenta.backend.helpers;
 import javax.persistence.*;
 import java.util.Date;
 
+
 public class ReservationHelper {
 
-
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long reservationid;
-    String name;
-    String email;
-    String roomtype;
-    Date checkin;
-    Date checkout;
-    boolean deleted;
+    private long reservationid;
+    private String name;
+    private String email;
+    private String roomtype;
+    private Date checkin;
+    private Date checkout;
+    private boolean deleted;
 
-       int  userId;
+    private int userId;
 
     public String getName() {
         return name;
