@@ -34,10 +34,7 @@ public class Room {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
 
     private List<RoomReservation> roomReservations;
-    @JsonIgnore
-    @JsonManagedReference("room-review")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomreview")
-    private List<UserReview> reviewList;
+
 
 
     public long getRoomid() {
@@ -99,12 +96,5 @@ public class Room {
         this.images = images;
     }
 
-    @JsonManagedReference
-    public List<UserReview> getReviewList() {
-        return reviewList;
-    }
 
-    public void setReviewList(List<UserReview> reviewList) {
-        this.reviewList = reviewList;
-    }
 }

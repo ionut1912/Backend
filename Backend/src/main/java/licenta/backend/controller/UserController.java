@@ -5,6 +5,7 @@ import licenta.backend.helpers.UserData;
 import licenta.backend.model.User;
 import licenta.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -65,6 +66,7 @@ public class UserController {
     public UserData getUserData(@PathVariable String username) {
         return userService.getData(username);
     }
+
 
 
 }

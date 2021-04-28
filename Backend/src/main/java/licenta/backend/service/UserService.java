@@ -3,6 +3,7 @@ package licenta.backend.service;
 import licenta.backend.helpers.UserData;
 import licenta.backend.model.User;
 import licenta.backend.repository.UserRepository;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -50,5 +51,8 @@ public class UserService implements UserDetailsService {
 
     public UserData getData(String username) {
         return userRepository.getUserDetails(username);
+
     }
+
+
 }

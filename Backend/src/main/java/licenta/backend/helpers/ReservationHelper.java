@@ -11,7 +11,7 @@ public class ReservationHelper {
     private Date checkin;
     private  Date checkout;
     private  boolean deleted;
-    private User user;
+    private long userid;
 
     public String getName() {
         return name;
@@ -61,11 +61,11 @@ public class ReservationHelper {
         this.deleted = deleted;
     }
 
-    public User getUser() {
-        return user;
+    public long getUser() {
+        return userid;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(long userid) {
+        this.userid = userid;
     }
 }

@@ -3,14 +3,23 @@ package licenta.backend.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import licenta.backend.service.UserService;
+import org.springframework.beans.factory.annotation.Configurable;
+
+import javax.annotation.Resource;
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 
 @Entity
+@Configurable(preConstruction = true)
 @Table(name = "reservations")
 public class Rezervation {
-
+@Resource
+UserService service;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long reservationid;
@@ -43,15 +52,18 @@ public class Rezervation {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezervation")
     @JsonManagedReference("reservation-roomReservation")
     private List<RoomReservation> roomReservations;
-
-    public Rezervation(String name, String email, String roomtype, Date checkin, Date checkout, boolean deleted, User user) {
+private Optional<User> userList;
+    public Rezervation(String name, String email, String roomtype, Date checkin, Date checkout, boolean deleted,long id) {
         this.name = name;
         this.email = email;
         this.roomtype = roomtype;
         this.checkin = checkin;
         this.checkout = checkout;
         this.deleted = deleted;
-        this.user = user;
+this.setUserList(service.findById(id));
+    }
+
+    public Rezervation() {
     }
 
 
@@ -129,5 +141,14 @@ public class Rezervation {
 
     public void setRoomReservations(List<RoomReservation> roomReservations) {
         this.roomReservations = roomReservations;
+    }
+
+
+    public Optional<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(Optional<User> userList) {
+        this.userList = userList;
     }
 }

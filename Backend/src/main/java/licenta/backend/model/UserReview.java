@@ -14,10 +14,7 @@ public class UserReview {
     @JoinColumn(name = "userid")
     @JsonBackReference("user-review")
     private User userreviews;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "roomid")
-    @JsonBackReference("room-review")
-    private Room roomreview;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reviewid")
     @JsonBackReference("review")
@@ -31,14 +28,7 @@ public class UserReview {
         this.userreviewid = userreviewid;
     }
 
-    @JsonBackReference
-    public Room getRoomreview() {
-        return roomreview;
-    }
 
-    public void setRoomreview(Room roomreview) {
-        this.roomreview = roomreview;
-    }
 
     @JsonBackReference
     public Review getReview() {

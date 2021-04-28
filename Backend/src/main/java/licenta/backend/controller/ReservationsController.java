@@ -3,8 +3,10 @@ package licenta.backend.controller;
 import licenta.backend.helpers.ReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.model.RoomReservation;
+import licenta.backend.model.User;
 import licenta.backend.service.RezervationService;
 import licenta.backend.service.RoomReservationService;
+import licenta.backend.service.UserService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +19,12 @@ import java.util.Date;
 public class ReservationsController {
 @Resource
 RezervationService rezervationService;
+@Resource
+    UserService service;
 @PostMapping
     public Rezervation saveReservation(@RequestBody ReservationHelper helper)
 {
+
     Rezervation rezervation=new Rezervation(helper.getName(),helper.getEmail(),helper.getRoomtype(),helper.getCheckin(),helper.getCheckout(),helper.isDeleted(),helper.getUser());
     return  rezervationService.save(rezervation);
 }
