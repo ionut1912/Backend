@@ -53,6 +53,8 @@ public class UserService implements UserDetailsService {
         return userRepository.getUserDetails(username);
 
     }
-
+public User getOneById(long id){
+        return  userRepository.getOne(id);
+}
 
 }

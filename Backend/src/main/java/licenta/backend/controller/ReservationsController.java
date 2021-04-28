@@ -25,7 +25,7 @@ RezervationService rezervationService;
     public Rezervation saveReservation(@RequestBody ReservationHelper helper)
 {
 
-    Rezervation rezervation=new Rezervation(helper.getName(),helper.getEmail(),helper.getRoomtype(),helper.getCheckin(),helper.getCheckout(),helper.isDeleted(),helper.getUser());
+    Rezervation rezervation=new Rezervation(helper.getName(),helper.getEmail(),helper.getRoomtype(),helper.getCheckin(),helper.getCheckout(),helper.isDeleted(),service.getOneById(helper.getUser()));
     return  rezervationService.save(rezervation);
 }
 
