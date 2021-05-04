@@ -42,8 +42,22 @@ public class RoomReservation {
     @Column(name = "noofadults")
     private int noofadults;
 
+    public RoomReservation() {
+    }
+
     @Column(name = "noofchildrens")
     private int noofchildrens;
+
+    public RoomReservation(Room room, Price price, Rezervation rezervation, Date checkin, Date checkout, int noofrooms, int noofadults, int noofchildrens) {
+        this.room = room;
+        this.price = price;
+        this.rezervation = rezervation;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.noofrooms = noofrooms;
+        this.noofadults = noofadults;
+        this.noofchildrens = noofchildrens;
+    }
 
 
     public long getRoomreservationsid() {

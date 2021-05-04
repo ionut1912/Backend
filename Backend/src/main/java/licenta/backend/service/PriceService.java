@@ -41,4 +41,7 @@ public class PriceService {
     public TotalPrice getTotalPrice(Date checkin, Date checkout, int priceid) {
         return priceRepository.getFinalPrice(checkin, checkout, priceid);
     }
+    public  Price getOneById(long id){
+        return  priceRepository.getOne(id);
+    }
 }

@@ -36,7 +36,9 @@ public class RezervationService {
     public void delete(Rezervation rezervation) {
         rezervationRepository.delete(rezervation);
     }
-
+public  Rezervation getOneById(long id){
+        return  rezervationRepository.getOne(id);
+}
 
 
 }

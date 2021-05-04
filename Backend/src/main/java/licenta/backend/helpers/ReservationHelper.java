@@ -1,16 +1,14 @@
 package licenta.backend.helpers;
 
-import licenta.backend.model.User;
-
 import java.util.Date;
 
 public class ReservationHelper {
-    private  String name;
+    private String name;
     private String email;
-    private  String roomtype;
+    private String roomtype;
     private Date checkin;
-    private  Date checkout;
-    private  boolean deleted;
+    private Date checkout;
+    private boolean deleted;
     private long userid;
 
     public String getName() {
@@ -57,15 +55,17 @@ public class ReservationHelper {
         return deleted;
     }
 
+    public long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(long userid) {
+        this.userid = userid;
+    }
+
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 
-    public long getUser() {
-        return userid;
-    }
 
-    public void setUser(long userid) {
-        this.userid = userid;
-    }
 }

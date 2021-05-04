@@ -1,36 +1,42 @@
 package licenta.backend.controller;
 
 import licenta.backend.helpers.ReservationHelper;
+import licenta.backend.helpers.RoomReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.model.RoomReservation;
-import licenta.backend.model.User;
-import licenta.backend.service.RezervationService;
-import licenta.backend.service.RoomReservationService;
-import licenta.backend.service.UserService;
-import org.springframework.format.annotation.DateTimeFormat;
+import licenta.backend.service.*;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.Date;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/reservations")
 public class ReservationsController {
-@Resource
-RezervationService rezervationService;
-@Resource
+    @Resource
+    RezervationService rezervationService;
+    @Resource
     UserService service;
-@PostMapping
-    public Rezervation saveReservation(@RequestBody ReservationHelper helper)
-{
+    @Resource
+    RoomReservationService roomReservationService;
+    @Resource
+    RoomService roomService;
+    @Resource
+    PriceService priceService;
 
-    Rezervation rezervation=new Rezervation(helper.getName(),helper.getEmail(),helper.getRoomtype(),helper.getCheckin(),helper.getCheckout(),helper.isDeleted(),service.getOneById(helper.getUser()));
-    return  rezervationService.save(rezervation);
-}
+    @PostMapping
+    public Rezervation saveReservation(@RequestBody ReservationHelper helper) {
 
+        Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(), helper.getCheckin(), helper.getCheckout(), helper.isDeleted(), service.getOneById(helper.getUserid()));
+        return rezervationService.save(rezervation);
+    }
 
-
+    @PostMapping("/roomreservations")
+    public RoomReservation saveRoomReservation(@RequestBody RoomReservationHelper roomReservationHelper) {
+        RoomReservation roomReservation = new RoomReservation(roomService.getOneById(roomReservationHelper.getRoomid()), priceService.getOneById(roomReservationHelper.getPriceid()), rezervationService.getOneById(roomReservationHelper.getReservationid()), roomReservationHelper.getCheckin(), roomReservationHelper.getCheckout(), roomReservationHelper.getNoofrooms(), roomReservationHelper.getNoofadults(), roomReservationHelper.getNoofchildrens());
+        return roomReservationService.save(roomReservation);
+    }
 
 
 }

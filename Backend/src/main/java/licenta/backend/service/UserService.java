@@ -56,5 +56,8 @@ public class UserService implements UserDetailsService {
 public User getOneById(long id){
         return  userRepository.getOne(id);
 }
+public  User findByUsername(String username){
+        return  userRepository.findByUsername(username);
+}
 
 }
