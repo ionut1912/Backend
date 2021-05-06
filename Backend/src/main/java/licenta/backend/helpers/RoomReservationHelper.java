@@ -5,7 +5,7 @@ import java.util.Date;
 public class RoomReservationHelper {
     public long roomid;
     public long priceid;
-    public long reservationid;
+
     public Date checkin;
     public Date checkout;
     public int noofrooms;
@@ -28,13 +28,6 @@ public class RoomReservationHelper {
         this.priceid = priceid;
     }
 
-    public long getReservationid() {
-        return reservationid;
-    }
-
-    public void setReservationid(long reservationid) {
-        this.reservationid = reservationid;
-    }
 
     public Date getCheckin() {
         return checkin;

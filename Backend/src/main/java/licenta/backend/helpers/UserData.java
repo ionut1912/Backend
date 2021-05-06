@@ -6,4 +6,5 @@ public interface UserData {
     String getemail();
 
     int getuserid();
+    String getusername();
 }

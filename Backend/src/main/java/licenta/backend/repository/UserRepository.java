@@ -12,7 +12,8 @@ public interface UserRepository  extends JpaRepository<User,Long> {
 
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
-@Query(value = "select name,email,userid from users where username=?1",nativeQuery = true)
+@Query(value = "select name,email,userid,username from users where username=?1",nativeQuery = true)
 UserData getUserDetails(String  username);
+
 }
 

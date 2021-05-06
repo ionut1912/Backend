@@ -16,6 +16,14 @@ import java.util.Objects;
 
 public class User implements UserDetails {
 
+    public String getHotelreview() {
+        return hotelreview;
+    }
+
+    public void setHotelreview(String hotelreview) {
+        this.hotelreview = hotelreview;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userid;
@@ -39,8 +47,8 @@ public class User implements UserDetails {
 
     private boolean enabled;
 
-    @Column(name = "hotelriview")
-    private String hotelriview;
+    @Column(name = "hotelreview")
+    private String hotelreview;
 
     public User() {
     }
@@ -162,13 +170,7 @@ public class User implements UserDetails {
     }
 
 
-    public String getHotelriview() {
-        return hotelriview;
-    }
 
-    public void setHotelriview(String hotelriview) {
-        this.hotelriview = hotelriview;
-    }
 
     @JsonManagedReference
     public List<UserReview> getReviews() {
