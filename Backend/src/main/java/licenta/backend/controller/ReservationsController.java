@@ -1,21 +1,26 @@
 package licenta.backend.controller;
 
 import licenta.backend.helpers.ReservationHelper;
-import licenta.backend.helpers.RoomReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.model.Room;
 import licenta.backend.model.RoomReservation;
 import licenta.backend.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
+
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/reservations")
 public class ReservationsController {
+    Logger logger = LoggerFactory.getLogger(ReservationsController.class);
+
     @Resource
     RezervationService rezervationService;
     @Resource
@@ -28,15 +33,27 @@ public class ReservationsController {
     PriceService priceService;
 
     @PostMapping
-    public void saveReservation(@RequestBody ReservationHelper helper,@RequestBody RoomReservationHelper roomReservationHelper) {
+    public void saveReservation(@RequestBody ReservationHelper helper) {
 
         Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(), helper.getCheckin(), helper.getCheckout(), helper.isDeleted(), service.getOneById(helper.getUserid()));
-        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(roomReservationHelper.getRoomid()),priceService.getOneById(roomReservationHelper.getPriceid()),roomReservationHelper.getCheckin(),roomReservationHelper.getCheckout(),roomReservationHelper.getNoofrooms(),roomReservationHelper.getNoofadults(),roomReservationHelper.getNoofchildrens());
+        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomid()),priceService.getOneById(helper.getPriceid()),helper.getCheckin(),helper.getCheckout(),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
+        List<RoomReservation> reservations=new ArrayList<RoomReservation>();
+        reservations.add(roomReservation);
+        rezervation.setRoomReservations(reservations);
         roomReservation.setRezervation(rezervation);
-        rezervation.setRoomReservations(Collections.singletonList(roomReservation));
         rezervationService.save(rezervation);
         roomReservationService.save(roomReservation);
     }
+    @GetMapping
+    public List<RoomReservation> getAll(){
+        return  roomReservationService.findAll();
+    }
+   @GetMapping("/{id}")
+    public  List<Rezervation> findUserById(@PathVariable  Long id){
+        return  rezervationService.findByUserId(id);
+}
+
+
 
 
 

@@ -21,6 +21,7 @@ public class Rezervation {
     private String name;
 
 
+
     @Column(name = "email")
     private String email;
 
@@ -136,5 +137,18 @@ public class Rezervation {
         this.roomReservations = roomReservations;
     }
 
-
+    @Override
+    public String toString() {
+        return "Rezervation{" +
+                "reservationid=" + reservationid +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", roomtype='" + roomtype + '\'' +
+                ", checkin=" + checkin +
+                ", checkout=" + checkout +
+                ", deleted=" + deleted +
+                ", user=" + user +
+                ", roomReservations=" + roomReservations +
+                '}';
+    }
 }

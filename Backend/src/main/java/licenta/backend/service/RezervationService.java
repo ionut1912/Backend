@@ -2,6 +2,7 @@ package licenta.backend.service;
 
 import licenta.backend.model.Price;
 import licenta.backend.model.Rezervation;
+import licenta.backend.model.User;
 import licenta.backend.repository.RezervationRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,6 @@ public class RezervationService {
 
     public List<Rezervation> findAll() {
         return rezervationRepository.findAll();
-
     }
 
   public Rezervation save(Rezervation rezervation) {
@@ -40,6 +40,9 @@ public  Rezervation getOneById(long id){
         return  rezervationRepository.getOne(id);
 }
 
-
+public List<Rezervation> findByUserId(Long user)
+{
+        return  rezervationRepository.findRezervationByuserid(user);
+}
 }
 

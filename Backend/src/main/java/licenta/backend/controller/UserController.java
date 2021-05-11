@@ -67,6 +67,5 @@ public class UserController {
         return userService.getData(username);
     }
 
-
 }
 

@@ -28,10 +28,7 @@ public class ManageRoomController {
     RoomReservationService roomReservationService;
 
 
-    @GetMapping
-    public List<Room> findAllRooms() {
-        return roomService.findAll();
-    }
+
 
     @GetMapping("/{checkin}/{checkout}")
     public List<RoomDetails> roomInfo(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout) {
@@ -58,6 +55,7 @@ public class ManageRoomController {
     public List<RoomImages> findById(@PathVariable int id) {
         return roomImageService.findImageById(id);
     }
+
 
 
 }
