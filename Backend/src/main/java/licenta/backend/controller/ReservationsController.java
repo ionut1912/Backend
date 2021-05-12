@@ -1,5 +1,6 @@
 package licenta.backend.controller;
 
+import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.ReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.model.Room;
@@ -7,6 +8,7 @@ import licenta.backend.model.RoomReservation;
 import licenta.backend.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -53,6 +55,24 @@ public class ReservationsController {
         return  rezervationService.findByUserId(id);
 }
 
+@PatchMapping("/{id}")
+    public ResponseEntity<Rezervation> updateRezervation(@PathVariable Long id ,@RequestBody Rezervation rezervation){
+    Rezervation rezervation1=rezervationService.findById(id).orElseThrow(()->new ResourceNotFoundException("Rezervarea cu id-ul " + id + " nu exista" ));
+    rezervation1.setName(rezervation.getName());
+    rezervation1.setEmail(rezervation.getEmail());
+    rezervation1.setRoomtype(rezervation.getRoomtype());
+rezervation1.setCheckin(rezervation.getCheckin());
+rezervation1.setCheckout(rezervation.getCheckout());
+    Rezervation modifiedrezervation=rezervationService.save(rezervation1);
+    return  ResponseEntity.ok(modifiedrezervation);
+}
+@PatchMapping("/delete/{id}")
+    public  ResponseEntity<Rezervation> deleteRezervation(@PathVariable Long id,@RequestBody Rezervation rezervation){
+    Rezervation rezervation1=rezervationService.findById(id).orElseThrow(()->new ResourceNotFoundException("Rezervarea cu id-ul " + id + " nu exista" ));
+    rezervation1.setDeleted(rezervation.isDeleted());
+    Rezervation modifiedrezervation=rezervationService.save(rezervation1);
+    return  ResponseEntity.ok(modifiedrezervation);
+}
 
 
 

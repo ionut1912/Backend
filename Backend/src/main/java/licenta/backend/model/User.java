@@ -16,13 +16,7 @@ import java.util.Objects;
 
 public class User implements UserDetails {
 
-    public String getHotelreview() {
-        return hotelreview;
-    }
 
-    public void setHotelreview(String hotelreview) {
-        this.hotelreview = hotelreview;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +45,12 @@ public class User implements UserDetails {
     private String hotelreview;
 
     public User() {
+    }
+
+    public User(String name, String email, String username) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
     }
 
     public User(String name, String email, String username, String password) {
@@ -117,6 +117,14 @@ public class User implements UserDetails {
 
     public void setType(Erole type) {
         this.type = type;
+    }
+
+    public String getHotelreview() {
+        return hotelreview;
+    }
+
+    public void setHotelreview(String hotelreview) {
+        this.hotelreview = hotelreview;
     }
 
     @Override

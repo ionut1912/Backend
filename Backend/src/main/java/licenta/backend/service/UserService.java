@@ -1,8 +1,10 @@
 package licenta.backend.service;
 
+import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.UserData;
 import licenta.backend.model.User;
 import licenta.backend.repository.UserRepository;
+
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -56,5 +58,4 @@ public class UserService implements UserDetailsService {
 public User getOneById(long id){
         return  userRepository.getOne(id);
 }
-
 }

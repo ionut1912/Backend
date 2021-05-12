@@ -35,7 +35,18 @@ public class Room {
 
     private List<RoomReservation> roomReservations;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomreview")
+    @JsonManagedReference("roomreviews")
+    private List<UserReview> reviews;
 
+    public List<UserReview> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<UserReview> reviews) {
+        this.reviews = reviews;
+    }
 
     public long getRoomid() {
         return roomid;

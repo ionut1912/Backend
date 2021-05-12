@@ -19,6 +19,14 @@ public class Review {
     @JsonManagedReference("review")
     public List<UserReview> userReviews;
 
+    public Review(String reviewtitle, String reviewtext) {
+        this.reviewtitle = reviewtitle;
+        this.reviewtext = reviewtext;
+    }
+
+    public Review() {
+    }
+
     public int getReviewid() {
         return reviewid;
     }
