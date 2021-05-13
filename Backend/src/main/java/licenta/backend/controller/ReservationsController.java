@@ -37,8 +37,8 @@ public class ReservationsController {
     @PostMapping
     public void saveReservation(@RequestBody ReservationHelper helper) {
 
-        Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(), helper.getCheckin(), helper.getCheckout(), helper.isDeleted(), service.getOneById(helper.getUserid()));
-        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomid()),priceService.getOneById(helper.getPriceid()),helper.getCheckin(),helper.getCheckout(),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
+        Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(), helper.getCheckin(), helper.getCheckout(), helper.isDeleted(), service.getOneById(helper.getUserId()));
+        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomId()),priceService.getOneById(helper.getPriceId()),helper.getCheckin(),helper.getCheckout(),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
         List<RoomReservation> reservations=new ArrayList<RoomReservation>();
         reservations.add(roomReservation);
         rezervation.setRoomReservations(reservations);
@@ -69,7 +69,7 @@ rezervation1.setCheckout(rezervation.getCheckout());
 @PatchMapping("/delete/{id}")
     public  ResponseEntity<Rezervation> deleteRezervation(@PathVariable Long id,@RequestBody Rezervation rezervation){
     Rezervation rezervation1=rezervationService.findById(id).orElseThrow(()->new ResourceNotFoundException("Rezervarea cu id-ul " + id + " nu exista" ));
-    rezervation1.setDeleted(rezervation.isDeleted());
+    rezervation1.setDeleted(true);
     Rezervation modifiedrezervation=rezervationService.save(rezervation1);
     return  ResponseEntity.ok(modifiedrezervation);
 }

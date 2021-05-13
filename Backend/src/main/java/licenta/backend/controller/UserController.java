@@ -41,7 +41,7 @@ public class UserController {
         User user = userService.findById(id).orElseThrow(() -> new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista "));
         return ResponseEntity.ok(user);
     }
-    @PreAuthorize("hasRole('ROLE_USER')")
+
     @PatchMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id,@RequestBody User user) {
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
