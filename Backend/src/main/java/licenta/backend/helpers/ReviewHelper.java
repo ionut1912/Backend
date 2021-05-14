@@ -3,8 +3,9 @@ package licenta.backend.helpers;
 public class ReviewHelper {
     public  String reviewTitle;
     public  String reviewText;
-    public  Long roomId;
+
     public  Long userId;
+    public  Long roomId;
     public String getReviewTitle() {
         return reviewTitle;
     }

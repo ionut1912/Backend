@@ -53,7 +53,7 @@ public class UserController {
 
 
     }
-    @PreAuthorize("hasRole('ROLE_USER')")
+
     @PatchMapping("/updatehotelreview/{id}")
     public ResponseEntity<User> updatehotelreview(@PathVariable Long id,@RequestBody User user) {
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
