@@ -14,7 +14,7 @@ public class RoomReservation {
         return "RoomReservation{" +
                 "roomreservationsid=" + roomreservationsid +
                 ", room=" + room +
-                ", price=" + price +
+
                 ", rezervation=" + rezervation +
                 ", checkin=" + checkin +
                 ", checkout=" + checkout +
@@ -33,10 +33,7 @@ public class RoomReservation {
     @JsonBackReference("roomReservation")
     private Room room;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "priceid")
-    @JsonBackReference("price-roomReservation")
-    private Price price;
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reservationid")
@@ -62,9 +59,9 @@ public class RoomReservation {
     @Column(name = "noofchildrens")
     private int noofchildrens;
 
-    public RoomReservation(Room room, Price price, Date checkin, Date checkout, int noofrooms, int noofadults, int noofchildrens) {
+    public RoomReservation(Room room, Date checkin, Date checkout, int noofrooms, int noofadults, int noofchildrens) {
         this.room = room;
-        this.price = price;
+
 
         this.checkin = checkin;
         this.checkout = checkout;
@@ -93,14 +90,10 @@ public class RoomReservation {
         this.room = room;
     }
 
-    @JsonBackReference
-    public Price getPrice() {
-        return price;
-    }
 
-    public void setPrice(Price price) {
-        this.price = price;
-    }
+
+
+
 
     @JsonBackReference
     public Rezervation getRezervation() {

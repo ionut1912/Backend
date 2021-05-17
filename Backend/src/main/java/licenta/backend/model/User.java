@@ -60,6 +60,15 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public User(String name, String email, String username, String password, Erole type, boolean enabled) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.type = type;
+        this.enabled = enabled;
+    }
+
     public long getUserid() {
         return userid;
     }

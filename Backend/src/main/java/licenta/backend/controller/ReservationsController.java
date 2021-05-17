@@ -31,14 +31,13 @@ public class ReservationsController {
     RoomReservationService roomReservationService;
     @Resource
     RoomService roomService;
-    @Resource
-    PriceService priceService;
+
 
     @PostMapping
     public void saveReservation(@RequestBody ReservationHelper helper) {
 
         Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(), helper.getCheckin(), helper.getCheckout(), helper.isDeleted(), service.getOneById(helper.getUserId()));
-        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomId()),priceService.getOneById(helper.getPriceId()),helper.getCheckin(),helper.getCheckout(),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
+        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomId()),helper.getCheckin(),helper.getCheckout(),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
         List<RoomReservation> reservations=new ArrayList<RoomReservation>();
         reservations.add(roomReservation);
         rezervation.setRoomReservations(reservations);

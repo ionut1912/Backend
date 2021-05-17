@@ -45,7 +45,9 @@ public class RoomService {
 public  Room getOneById(long id){
         return  roomRepository.getOne(id);
 }
-
+public  void deleteRoombyId(Long id){
+    this.roomRepository.deleteById(id);
+}
 }
 
 

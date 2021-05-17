@@ -22,9 +22,10 @@ public class Room {
 
     @Column(name = "roomdetails")
     private String roomdetails;
-    @Column(name = "roomstatus")
-    private String roomstatus;
-
+    @Column(name = "roomprice")
+    private  float roomprice;
+    @Column(name = "pricecurency")
+    private String pricecurency;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomforimage")
     @JsonManagedReference("room")
@@ -90,13 +91,7 @@ public class Room {
     }
 
 
-    public void setRoomstatus(String roomstatus) {
-        this.roomstatus = roomstatus;
-    }
 
-    public String getRoomstatus() {
-        return roomstatus;
-    }
 
     @JsonManagedReference
     public List<RoomImages> getImages() {
@@ -107,5 +102,19 @@ public class Room {
         this.images = images;
     }
 
+    public float getRoomprice() {
+        return roomprice;
+    }
 
+    public void setRoomprice(float roomprice) {
+        this.roomprice = roomprice;
+    }
+
+    public String getPricecurency() {
+        return pricecurency;
+    }
+
+    public void setPricecurency(String pricecurency) {
+        this.pricecurency = pricecurency;
+    }
 }

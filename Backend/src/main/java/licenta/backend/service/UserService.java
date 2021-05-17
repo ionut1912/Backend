@@ -58,4 +58,7 @@ public class UserService implements UserDetailsService {
 public User getOneById(long id){
         return  userRepository.getOne(id);
 }
+public  void deleteUser(Long id){
+        this.userRepository.deleteById(id);
+}
 }

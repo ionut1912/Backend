@@ -2,10 +2,13 @@ package licenta.backend.controller;
 
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.UserData;
+import licenta.backend.model.Erole;
 import licenta.backend.model.User;
+import licenta.backend.model.UserHelper;
 import licenta.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,18 +25,18 @@ public class UserController {
     private UserService userService;
 
 
-    public UserController(UserService userserv) {
-        userService = userserv;
-    }
-
+@Resource
+    PasswordEncoder encoder;
     @GetMapping
     public List<User> getAll() {
         return userService.findAll();
     }
 
     @PostMapping
-    public User create(@RequestBody User user) {
-        return userService.save(user);
+    public User create(@RequestBody UserHelper userHelper)
+    {
+        User user=new User(userHelper.getName(),userHelper.getEmail(),userHelper.getUsername(),encoder.encode(encoder.encode(userHelper.getPassword())), Erole.ROLE_USER,true);
+        return  userService.save(user);
     }
 
     @GetMapping("/{id}")
@@ -48,6 +51,7 @@ public class UserController {
         user1.setName(user.getName());
         user1.setEmail(user.getEmail());
         user1.setUsername(user.getUsername());
+        user1.setType(user.getType());
         User modifieduser=userService.save(user1);
         return  ResponseEntity.ok(modifieduser);
 
@@ -63,7 +67,10 @@ public class UserController {
 
 
     }
-
+@DeleteMapping("/{id}")
+public  void deleteUser(@PathVariable Long id){
+        this.userService.deleteUser(id);
+}
 
     @GetMapping("/user1/{username}")
     public UserData getUserData(@PathVariable String username) {

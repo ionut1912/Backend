@@ -1,13 +1,10 @@
 package licenta.backend.service;
 
-import licenta.backend.model.Price;
 import licenta.backend.model.Rezervation;
-import licenta.backend.model.User;
 import licenta.backend.repository.RezervationRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

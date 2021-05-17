@@ -28,8 +28,6 @@ public class ManageRoomController {
     RoomReservationService roomReservationService;
 
 
-
-
     @GetMapping("/{checkin}/{checkout}")
     public List<RoomDetails> roomInfo(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout) {
         return roomService.getInfo(checkin, checkout);
@@ -56,6 +54,26 @@ public class ManageRoomController {
         return roomImageService.findImageById(id);
     }
 
+    @PostMapping
+    public Room createRoom(@RequestBody Room room) {
+        return roomService.save(room);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Room> updateRoom(@PathVariable Long id,@RequestBody Room room) {
+        Room room1=roomService.findById(id).orElseThrow(()->new ResourceNotFoundException("Camera cu id-ul " + id + " nu exista" ));
+        room1.setName(room.getName());
+        room1.setRoomtype(room.getRoomtype());
+        room1.setRoomdetails(room.getRoomdetails());
+        room1.setRoomprice(room.getRoomprice());
+        room1.setPricecurency(room.getPricecurency());
+        Room modifiedroom=roomService.save(room1);
+        return  ResponseEntity.ok(modifiedroom);
 
 
+    }
+    @DeleteMapping("/{id}")
+    public  void  deleteById(@PathVariable Long id){
+        roomService.deleteRoombyId(id);
+    }
 }
