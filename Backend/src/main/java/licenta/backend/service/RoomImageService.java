@@ -19,4 +19,7 @@ public class RoomImageService {
     public List<RoomImages> findImageById(int id) {
         return roomImageRepository.getRoomImage(id);
     }
+    public  RoomImages save(RoomImages images){
+        return  roomImageRepository.save(images);
+    }
 }

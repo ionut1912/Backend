@@ -21,7 +21,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/reservations")
 public class ReservationsController {
-    Logger logger = LoggerFactory.getLogger(ReservationsController.class);
+
 
     @Resource
     RezervationService rezervationService;
@@ -48,6 +48,10 @@ public class ReservationsController {
     @GetMapping
     public List<RoomReservation> getAll(){
         return  roomReservationService.findAll();
+    }
+    @GetMapping("/all")
+    public List<Rezervation> getAllRezervations(){
+        return rezervationService.findAll();
     }
    @GetMapping("/{id}")
     public  List<Rezervation> findUserById(@PathVariable  Long id){

@@ -12,7 +12,7 @@ public class ReservationHelper {
     public  boolean deleted;
     public  int userId;
     public  int roomId;
-    public  int priceId;
+
     public  int noofrooms;
     public int noofadults;
     public  int noofchildrens;
@@ -108,11 +108,5 @@ public class ReservationHelper {
         this.roomId = roomId;
     }
 
-    public int getPriceId() {
-        return priceId;
-    }
 
-    public void setPriceId(int priceId) {
-        this.priceId = priceId;
-    }
 }

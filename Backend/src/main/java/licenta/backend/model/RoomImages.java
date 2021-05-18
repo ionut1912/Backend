@@ -16,45 +16,57 @@ public class RoomImages {
     @JoinColumn(name = "roomid")
     @JsonBackReference("room")
     private Room roomforimage;
-    @Column(name = "imagepath")
-    private String imagepath;
+    @Column(name = "name")
+    private  String name;
+    @Column(name="type")
+    private  String type;
 
-    public RoomImages(int imageid, Room roomid, String roomimage) {
-        this.imageid = imageid;
-        this.roomforimage = roomid;
-        this.imagepath = roomimage;
-    }
+    @Column(name = "imagepath",length = 30000)
+    private byte[] imagepath;
 
-    public RoomImages() {
+    public RoomImages(String name, String type, byte[] imagepath) {
+        this.name = name;
+        this.type = type;
+        this.imagepath = imagepath;
     }
 
     public long getImageid() {
         return imageid;
     }
 
-    public void setImageid(int imageid) {
+    public void setImageid(long imageid) {
         this.imageid = imageid;
     }
 
-    @JsonBackReference
-    public Room getRoomid() {
+    public Room getRoomforimage() {
         return roomforimage;
     }
-
-    public void setRoomid(Room roomid) {
-        this.roomforimage = roomid;
-    }
-
 
     public void setRoomforimage(Room roomforimage) {
         this.roomforimage = roomforimage;
     }
 
-    public String getImagepath() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public byte[] getImagepath() {
         return imagepath;
     }
 
-    public void setImagepath(String imagepath) {
+    public void setImagepath(byte[] imagepath) {
         this.imagepath = imagepath;
     }
 }

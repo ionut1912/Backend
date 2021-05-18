@@ -91,7 +91,13 @@ public class Room {
     }
 
 
-
+    public Room(String name, String roomtype, String roomdetails, float roomprice, String pricecurency) {
+        this.name = name;
+        this.roomtype = roomtype;
+        this.roomdetails = roomdetails;
+        this.roomprice = roomprice;
+        this.pricecurency = pricecurency;
+    }
 
     @JsonManagedReference
     public List<RoomImages> getImages() {
