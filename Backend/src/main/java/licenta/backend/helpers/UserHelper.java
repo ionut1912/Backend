@@ -1,4 +1,6 @@
-package licenta.backend.model;
+package licenta.backend.helpers;
+
+import licenta.backend.model.Erole;
 
 public class UserHelper {
 public  String name;

@@ -90,6 +90,8 @@ public class Room {
         this.roomdetails = roomdetails;
     }
 
+    public Room() {
+    }
 
     public Room(String name, String roomtype, String roomdetails, float roomprice, String pricecurency) {
         this.name = name;

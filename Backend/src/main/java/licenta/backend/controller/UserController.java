@@ -2,20 +2,16 @@ package licenta.backend.controller;
 
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.UserData;
+import licenta.backend.helpers.UserHelper;
 import licenta.backend.model.Erole;
 import licenta.backend.model.User;
-import licenta.backend.model.UserHelper;
 import licenta.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")

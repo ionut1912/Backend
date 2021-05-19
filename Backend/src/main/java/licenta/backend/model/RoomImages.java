@@ -3,6 +3,7 @@ package licenta.backend.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Entity
 @Table(name = "roomimages")
@@ -16,17 +17,15 @@ public class RoomImages {
     @JoinColumn(name = "roomid")
     @JsonBackReference("room")
     private Room roomforimage;
-    @Column(name = "name")
-    private  String name;
-    @Column(name="type")
-    private  String type;
 
+    @Lob
     @Column(name = "imagepath",length = 30000)
-    private byte[] imagepath;
+    private String imagepath;
 
-    public RoomImages(String name, String type, byte[] imagepath) {
-        this.name = name;
-        this.type = type;
+    public RoomImages() {
+    }
+
+    public RoomImages(String imagepath) {
         this.imagepath = imagepath;
     }
 
@@ -46,27 +45,14 @@ public class RoomImages {
         this.roomforimage = roomforimage;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public byte[] getImagepath() {
+    public String getImagepath() {
         return imagepath;
     }
 
-    public void setImagepath(byte[] imagepath) {
+    public void setImagepath(String imagepath) {
         this.imagepath = imagepath;
     }
 }
