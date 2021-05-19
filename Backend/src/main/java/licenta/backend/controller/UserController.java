@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id,@RequestBody User user) {
+    public ResponseEntity<User> update(@PathVariable Long id,@RequestBody UserHelper user) {
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
         user1.setName(user.getName());
         user1.setEmail(user.getEmail());
