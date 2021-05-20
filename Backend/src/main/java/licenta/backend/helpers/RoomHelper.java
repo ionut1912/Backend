@@ -1,21 +1,24 @@
 package licenta.backend.helpers;
 
+import java.util.List;
+
 public class RoomHelper {
     public String name;
     public String roomtype;
     public String roomdetails;
     public float roomprice;
     public String pricecurency;
-   public  String  imagepath;
+   public String[] imagepath;
     public String getName() {
         return name;
     }
 
-    public String getImagepath() {
+
+    public String[] getImagepath() {
         return imagepath;
     }
 
-    public void setImagepath(String imagepath) {
+    public void setImagepath(String[] imagepath) {
         this.imagepath = imagepath;
     }
 

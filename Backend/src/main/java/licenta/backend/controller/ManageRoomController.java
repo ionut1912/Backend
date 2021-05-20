@@ -68,6 +68,7 @@ public class ManageRoomController {
     @PostMapping
     public void createRoom(@RequestBody RoomHelper roomHelper ) {
         Room room = new Room(roomHelper.getName(), roomHelper.getRoomtype(), roomHelper.getRoomdetails(), roomHelper.getRoomprice(), roomHelper.getPricecurency());
+
         RoomImages roomImages=new RoomImages(roomHelper.getImagepath());
         List<RoomImages> images=new ArrayList<RoomImages>();
         images.add(roomImages);

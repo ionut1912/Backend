@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.List;
 
 @Entity
 @Table(name = "roomimages")
@@ -20,14 +21,17 @@ public class RoomImages {
 
     @Lob
     @Column(name = "imagepath",length = 30000)
-    private String imagepath;
+    private String[] imagepath;
 
     public RoomImages() {
     }
 
-    public RoomImages(String imagepath) {
-        this.imagepath = imagepath;
+    public RoomImages(String[] imagepath) {
     }
+
+
+
+
 
     public long getImageid() {
         return imageid;
@@ -48,11 +52,11 @@ public class RoomImages {
 
 
 
-    public String getImagepath() {
+    public String[] getImagepath() {
         return imagepath;
     }
 
-    public void setImagepath(String imagepath) {
+    public void setImagepath(String[] imagepath) {
         this.imagepath = imagepath;
     }
 }
