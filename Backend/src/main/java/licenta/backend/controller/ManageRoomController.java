@@ -68,14 +68,19 @@ public class ManageRoomController {
     @PostMapping
     public void createRoom(@RequestBody RoomHelper roomHelper ) {
         Room room = new Room(roomHelper.getName(), roomHelper.getRoomtype(), roomHelper.getRoomdetails(), roomHelper.getRoomprice(), roomHelper.getPricecurency());
+for(int i=0;i<roomHelper.getImagepath().length;i++)
+{
+    RoomImages roomImages=new RoomImages(roomHelper.getImagepath()[i]);
+    List<RoomImages> images=new ArrayList<RoomImages>();
+    images.add(roomImages);
+    room.setImages(images);
+    roomImages.setRoomforimage(room);
 
-        RoomImages roomImages=new RoomImages(roomHelper.getImagepath());
-        List<RoomImages> images=new ArrayList<RoomImages>();
-        images.add(roomImages);
-        room.setImages(images);
-        roomImages.setRoomforimage(room);
+    roomImageService.save(roomImages);
+
+}
+
         roomService.save(room);
-        roomImageService.save(roomImages);
 
 
     }

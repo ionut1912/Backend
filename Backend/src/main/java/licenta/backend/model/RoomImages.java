@@ -21,12 +21,13 @@ public class RoomImages {
 
     @Lob
     @Column(name = "imagepath",length = 30000)
-    private String[] imagepath;
+    private String imagepath;
 
     public RoomImages() {
     }
 
-    public RoomImages(String[] imagepath) {
+    public RoomImages(String imagepath) {
+        this.imagepath=imagepath;
     }
 
 
@@ -52,11 +53,11 @@ public class RoomImages {
 
 
 
-    public String[] getImagepath() {
+    public String getImagepath() {
         return imagepath;
     }
 
-    public void setImagepath(String[] imagepath) {
+    public void setImagepath(String imagepath) {
         this.imagepath = imagepath;
     }
 }
