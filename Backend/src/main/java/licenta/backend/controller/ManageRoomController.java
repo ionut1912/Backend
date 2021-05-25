@@ -2,8 +2,10 @@ package licenta.backend.controller;
 
 
 import licenta.backend.exception.ResourceNotFoundException;
+import licenta.backend.helpers.ImageHelper;
 import licenta.backend.helpers.RoomDetails;
 import licenta.backend.helpers.RoomHelper;
+import licenta.backend.helpers.TotalPrice;
 import licenta.backend.model.Room;
 import licenta.backend.model.RoomImages;
 import licenta.backend.payload.response.ResponseMessage;
@@ -11,21 +13,15 @@ import licenta.backend.service.RoomImageService;
 import licenta.backend.service.RoomReservationService;
 import licenta.backend.service.RoomService;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.annotation.Resource;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.DataFormatException;
-import java.util.zip.Deflater;
-import java.util.zip.Inflater;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -42,6 +38,16 @@ public class ManageRoomController {
     @GetMapping("/{checkin}/{checkout}")
     public List<RoomDetails> roomInfo(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout) {
         return roomService.getInfo(checkin, checkout);
+    }
+    @GetMapping("/details")
+     public  List<RoomDetails> getRoomsInformations(){
+        return  roomService.getRoomsDetails();
+    }
+
+    @GetMapping("/{checkin}/{checkout}/{id}")
+    public TotalPrice getPrice(@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin,@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout,@PathVariable Long id)
+    {
+        return  this.roomService.getPrice(checkin,checkout,id);
     }
 
     @GetMapping("/all")
@@ -99,6 +105,19 @@ for(int i=0;i<roomHelper.getImagepath().length;i++)
 
 
     }
+    @PatchMapping("/images/{id}")
+    public  ResponseEntity<RoomImages> updateImage(@PathVariable Long id,@RequestBody ImageHelper images){
+        RoomImages roomImages1=roomImageService.findById(id).orElseThrow(()->new ResourceNotFoundException("Imaginea cu id-ul" +id+ " nu exista"));
+for(int i=0;i<images.getImagepath().length;i++){
+    roomImages1.setImagepath(images.getImagepath()[i]);
+
+
+}
+        RoomImages modifiedImage=roomImageService.save(roomImages1);
+        return  ResponseEntity.ok(modifiedImage);
+    }
+
+
     @DeleteMapping("/{id}")
     public  void  deleteById(@PathVariable Long id){
         roomService.deleteRoombyId(id);

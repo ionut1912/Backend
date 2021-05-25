@@ -8,10 +8,6 @@ public interface RoomDetails {
     String getroomtype();
 
     String getroomdetails();
-
     int getroomid();
 
-    Date getcheckin();
-
-    Date getcheckout();
 }

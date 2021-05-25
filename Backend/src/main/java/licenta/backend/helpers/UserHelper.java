@@ -8,6 +8,15 @@ public  String email;
 public  String username;
 public  String password;
 public  Erole type;
+public  String hotelreview;
+
+    public String getHotelreview() {
+        return hotelreview;
+    }
+
+    public void setHotelreview(String hotelreview) {
+        this.hotelreview = hotelreview;
+    }
 
     public String getName() {
         return name;

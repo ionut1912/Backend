@@ -1,6 +1,7 @@
 package licenta.backend.service;
 
 import licenta.backend.helpers.RoomDetails;
+import licenta.backend.helpers.TotalPrice;
 import licenta.backend.model.Room;
 import licenta.backend.repository.RoomRepository;
 import org.springframework.stereotype.Service;
@@ -39,14 +40,18 @@ public class RoomService {
         return roomRepository.findById(id);
     }
 
-    public void delete(Room room) {
-        roomRepository.delete(room);
-    }
+
 public  Room getOneById(long id){
         return  roomRepository.getOne(id);
 }
 public  void deleteRoombyId(Long id){
     this.roomRepository.deleteById(id);
+}
+public  List<RoomDetails> getRoomsDetails(){
+        return  roomRepository.getRommInfoNotRezerved();
+}
+public TotalPrice getPrice(Date checkin,Date checkout,Long roomid){
+        return  roomRepository.getPrice(checkin,checkout,roomid);
 }
 }
 

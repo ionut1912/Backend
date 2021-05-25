@@ -3,7 +3,7 @@ package licenta.backend.helpers;
 public interface TotalPrice {
     float getfinalprice();
 
-    String gettype();
+    String getpricecurency();
 
-    int getpriceid();
+
 }

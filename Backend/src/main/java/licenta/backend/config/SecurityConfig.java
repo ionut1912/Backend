@@ -65,18 +65,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers(HttpMethod.POST, "/auth/signin").permitAll().
                 antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
                 .antMatchers(HttpMethod.GET, "/room/{checkin}/{checkout}").permitAll()
+                .antMatchers(HttpMethod.GET, "/room/{checkin}/{checkout}/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/room/images").permitAll()
                 .antMatchers(HttpMethod.GET, "/room/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/room/details").permitAll()
 
-                .antMatchers(HttpMethod.GET, "room/days/{checkin}/{checkout}").permitAll()
                 .antMatchers(HttpMethod.GET, "/reviews/{id}").permitAll()
-                .antMatchers(HttpMethod.POST, "/reviews").permitAll()
-                .antMatchers(HttpMethod.GET, "/prices/{checkin}/{checkout}/{id}").permitAll().
-                antMatchers(HttpMethod.GET,"/prices/one/{id}").permitAll().
+                .antMatchers(HttpMethod.POST, "/reviews").permitAll().
+
 
                 antMatchers(HttpMethod.GET, "/room/all").permitAll().
                 antMatchers(HttpMethod.POST, "/room").permitAll().
                 antMatchers(HttpMethod.POST, "/room/images").permitAll().
+                antMatchers(HttpMethod.PATCH, "/room/images/{id}").permitAll().
+                antMatchers(HttpMethod.DELETE, "/room/images/{id}").permitAll().
                 antMatchers(HttpMethod.PATCH, "/room/{id}").permitAll().
                 antMatchers(HttpMethod.DELETE, "/room/{id}").permitAll().
                 antMatchers(HttpMethod.GET,"/user/{id}").permitAll().
@@ -84,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers(HttpMethod.GET,"/user").permitAll().
                 antMatchers(HttpMethod.GET, "/user/user1/{username}").permitAll()
                 .antMatchers(HttpMethod.GET,"/reservations").permitAll()
+                .antMatchers(HttpMethod.POST,"/reservations").permitAll()
                 .antMatchers(HttpMethod.GET,"/reservations/all").permitAll()
                 .antMatchers(HttpMethod.GET,"/reservations/{id}").permitAll().
         antMatchers(HttpMethod.POST,"/user").permitAll()

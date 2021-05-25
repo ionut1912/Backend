@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @PatchMapping("/updatehotelreview/{id}")
-    public ResponseEntity<User> updatehotelreview(@PathVariable Long id,@RequestBody User user) {
+    public ResponseEntity<User> updatehotelreview(@PathVariable Long id,@RequestBody UserHelper user) {
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
         user1.setHotelreview(user.getHotelreview());
         User modifieduser=userService.save(user1);

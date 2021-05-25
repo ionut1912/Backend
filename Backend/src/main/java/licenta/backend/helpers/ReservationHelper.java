@@ -10,8 +10,8 @@ public class ReservationHelper {
     public  Date checkout;
 
     public  boolean deleted;
-    public  int userId;
-    public  int roomId;
+    public  int userid;
+    public  int roomid;
 
     public  int noofrooms;
     public int noofadults;
@@ -65,8 +65,21 @@ public class ReservationHelper {
         this.deleted = deleted;
     }
 
+    public int getUserid() {
+        return userid;
+    }
 
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
 
+    public int getRoomid() {
+        return roomid;
+    }
+
+    public void setRoomid(int roomid) {
+        this.roomid = roomid;
+    }
 
     public int getNoofrooms() {
         return noofrooms;
@@ -91,22 +104,5 @@ public class ReservationHelper {
     public void setNoofchildrens(int noofchildrens) {
         this.noofchildrens = noofchildrens;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-
 
 }
