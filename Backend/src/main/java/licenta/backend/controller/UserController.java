@@ -1,6 +1,7 @@
 package licenta.backend.controller;
 
 import licenta.backend.exception.ResourceNotFoundException;
+import licenta.backend.helpers.HotelReviewHelper;
 import licenta.backend.helpers.UserData;
 import licenta.backend.helpers.UserHelper;
 import licenta.backend.model.Erole;
@@ -73,5 +74,11 @@ public  void deleteUser(@PathVariable Long id){
         return userService.getData(username);
     }
 
+@GetMapping("/hotelreview")
+    public  List<HotelReviewHelper> getHotelReviews(){
+        return  userService.getReviews();
 }
+
+}
+
 
