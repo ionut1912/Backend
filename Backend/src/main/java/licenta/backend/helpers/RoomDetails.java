@@ -9,5 +9,7 @@ public interface RoomDetails {
 
     String getroomdetails();
     int getroomid();
+    float getroomprice();
+    String getpricecurency();
 
 }
