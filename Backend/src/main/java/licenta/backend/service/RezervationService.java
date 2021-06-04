@@ -1,5 +1,6 @@
 package licenta.backend.service;
 
+import licenta.backend.helpers.UserReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.repository.RezervationRepository;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public  Rezervation getOneById(long id){
         return  rezervationRepository.getOne(id);
 }
 
-public List<Rezervation> findByUserId(Long user)
+public List<UserReservationHelper> findByUserId(Long user)
 {
         return  rezervationRepository.findRezervationByuserid(user);
 }

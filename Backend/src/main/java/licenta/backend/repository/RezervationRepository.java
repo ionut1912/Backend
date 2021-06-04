@@ -1,5 +1,6 @@
 package licenta.backend.repository;
 
+import licenta.backend.helpers.UserReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface RezervationRepository extends JpaRepository<Rezervation, Long> {
-@Query(value = "SELECT * FROM licenta.reservations where userid=?1",nativeQuery = true)
-    List<Rezervation> findRezervationByuserid(Long userId);
+@Query(value = "SELECT reservations.reservationid, name,email,roomtype,reservations.checkin,reservations.checkout,deleted,userid  ,roomid FROM licenta.reservations inner join roomreservations on reservations.reservationid= roomreservations.reservationid where userid=?1",nativeQuery = true)
+    List<UserReservationHelper> findRezervationByuserid(Long userId);
 
 }

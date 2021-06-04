@@ -2,6 +2,7 @@ package licenta.backend.controller;
 
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.ReservationHelper;
+import licenta.backend.helpers.UserReservationHelper;
 import licenta.backend.model.Rezervation;
 import licenta.backend.model.Room;
 import licenta.backend.model.RoomReservation;
@@ -54,12 +55,12 @@ public class ReservationsController {
         return rezervationService.findAll();
     }
    @GetMapping("/{id}")
-    public  List<Rezervation> findUserById(@PathVariable  Long id){
+    public  List<UserReservationHelper> findUserById(@PathVariable  Long id){
         return  rezervationService.findByUserId(id);
 }
 
 @PatchMapping("/{id}")
-    public ResponseEntity<Rezervation> updateRezervation(@PathVariable Long id ,@RequestBody Rezervation rezervation){
+    public ResponseEntity<Rezervation> updateRezervation(@PathVariable Long id ,@RequestBody ReservationHelper rezervation){
     Rezervation rezervation1=rezervationService.findById(id).orElseThrow(()->new ResourceNotFoundException("Rezervarea cu id-ul " + id + " nu exista" ));
     rezervation1.setName(rezervation.getName());
     rezervation1.setEmail(rezervation.getEmail());
