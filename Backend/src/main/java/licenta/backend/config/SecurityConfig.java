@@ -75,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
                 antMatchers(HttpMethod.GET, "/room/all").permitAll().
+                antMatchers(HttpMethod.POST, "/room/views").permitAll().
+                antMatchers(HttpMethod.GET, "/room/views/{id}").permitAll().
                 antMatchers(HttpMethod.POST, "/room").permitAll().
                 antMatchers(HttpMethod.POST, "/room/images").permitAll().
                 antMatchers(HttpMethod.PATCH, "/room/images/{id}").permitAll().
@@ -95,6 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH,"/reservations/delete/{id}").permitAll()
                 .antMatchers(HttpMethod.POST, "/reservations").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/user/{id}").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/user/{id}/type").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/user/updatehotelreview/{id}").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

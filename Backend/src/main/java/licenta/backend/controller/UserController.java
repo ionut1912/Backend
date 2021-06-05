@@ -54,7 +54,18 @@ public class UserController {
 
 
     }
+    @PatchMapping("/{id}/type")
+    public ResponseEntity<User> updatewithoutType(@PathVariable Long id,@RequestBody UserHelper user) {
+        User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
+        user1.setName(user.getName());
+        user1.setEmail(user.getEmail());
+        user1.setUsername(user.getUsername());
 
+        User modifieduser=userService.save(user1);
+        return  ResponseEntity.ok(modifieduser);
+
+
+    }
     @PatchMapping("/updatehotelreview/{id}")
     public ResponseEntity<User> updatehotelreview(@PathVariable Long id,@RequestBody UserHelper user) {
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));

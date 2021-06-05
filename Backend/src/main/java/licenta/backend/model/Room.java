@@ -40,6 +40,17 @@ public class Room {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomreview")
     @JsonManagedReference("roomreviews")
     private List<UserReview> reviews;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomviewed")
+    @JsonManagedReference("roomviewed")
+    private List<RoomViewed>  roomsviewedid;
+
+    public List<RoomViewed> getRoomsviewedid() {
+        return roomsviewedid;
+    }
+
+    public void setRoomsviewedid(List<RoomViewed> roomsviewedid) {
+        this.roomsviewedid = roomsviewedid;
+    }
 
     public List<UserReview> getReviews() {
         return reviews;

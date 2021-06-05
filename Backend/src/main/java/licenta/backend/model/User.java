@@ -38,13 +38,23 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userreviews")
     @JsonManagedReference("user-review")
     private List<UserReview> reviews;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userroomviewed")
+    @JsonManagedReference("userroomviewed")
+    private List<RoomViewed>  roomsviewed;
     private boolean enabled;
 
     @Column(name = "hotelreview")
     private String hotelreview;
 
     public User() {
+    }
+    @JsonManagedReference
+    public List<RoomViewed> getRoomsviewed() {
+        return roomsviewed;
+    }
+
+    public void setRoomsviewed(List<RoomViewed> roomsviewed) {
+        this.roomsviewed = roomsviewed;
     }
 
     public User(String name, String email, String username) {
