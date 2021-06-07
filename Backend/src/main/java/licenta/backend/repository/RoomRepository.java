@@ -1,5 +1,6 @@
 package licenta.backend.repository;
 
+import licenta.backend.helpers.NrOfFreeRoomsHelper;
 import licenta.backend.helpers.RoomDetails;
 import licenta.backend.helpers.TotalPrice;
 import licenta.backend.model.Room;
@@ -19,5 +20,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 List<RoomDetails> getRommInfoNotRezerved();
 @Query(value = "select datediff(?2,?1)*roomprice as finalprice,pricecurency from rooms where roomid=?3",nativeQuery = true)
     TotalPrice getPrice(Date checkin,Date checkout,Long roomid);
+@Query(value ="select count(roomtype) as nroffreerooms from rooms where(roomid  not in (select roomid from roomreservations) and roomtype=?1)",nativeQuery = true)
+    NrOfFreeRoomsHelper getNroffreeroms(String  roomtype);
 }
 

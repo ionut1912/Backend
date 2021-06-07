@@ -1,5 +1,6 @@
 package licenta.backend.service;
 
+import licenta.backend.helpers.NrOfFreeRoomsHelper;
 import licenta.backend.helpers.RoomDetails;
 import licenta.backend.helpers.TotalPrice;
 import licenta.backend.model.Room;
@@ -52,6 +53,10 @@ public  List<RoomDetails> getRoomsDetails(){
 }
 public TotalPrice getPrice(Date checkin,Date checkout,Long roomid){
         return  roomRepository.getPrice(checkin,checkout,roomid);
+}
+public NrOfFreeRoomsHelper getNrOfFreeRooms(String roomType)
+{
+    return  roomRepository.getNroffreeroms(roomType);
 }
 }
 
