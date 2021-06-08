@@ -3,6 +3,7 @@ package licenta.backend.service;
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.HotelReviewHelper;
 import licenta.backend.helpers.UserData;
+import licenta.backend.helpers.UserRoomHelper;
 import licenta.backend.model.User;
 import licenta.backend.repository.UserRepository;
 
@@ -66,5 +67,8 @@ public  void deleteUser(Long id){
 public  List<HotelReviewHelper> getReviews(){
     return  userRepository.getHotelReview();
 
+}
+public  List<UserRoomHelper> getRooms(Long id){
+        return  this.userRepository.getUserRooms(id);
 }
 }

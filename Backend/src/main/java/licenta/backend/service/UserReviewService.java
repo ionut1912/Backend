@@ -1,6 +1,7 @@
 package licenta.backend.service;
 
 import licenta.backend.helpers.ReviewDetails;
+import licenta.backend.helpers.UserRoomHelper;
 import licenta.backend.model.UserReview;
 import licenta.backend.repository.UserReviewRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class UserReviewService {
     public UserReview save(UserReview userreview) {
 
         return userReviewRepository.save(userreview);
+    }
+    public List<UserRoomHelper> getRoomsReviewed(Long id){
+      return   userReviewRepository.getRoomsReviewed(id);
     }
 }
 

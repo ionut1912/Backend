@@ -4,6 +4,7 @@ import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.HotelReviewHelper;
 import licenta.backend.helpers.UserData;
 import licenta.backend.helpers.UserHelper;
+import licenta.backend.helpers.UserRoomHelper;
 import licenta.backend.model.Erole;
 import licenta.backend.model.User;
 import licenta.backend.service.UserService;
@@ -90,6 +91,11 @@ public  void deleteUser(@PathVariable Long id){
         return  userService.getReviews();
 }
 
+@GetMapping("/rooms/{id}")
+    public  List<UserRoomHelper> getUserRooms(@PathVariable Long id){
+      return   this.userService.getRooms(id);
 }
+}
+
 
 

@@ -2,6 +2,7 @@ package licenta.backend.controller;
 
 import licenta.backend.helpers.ReviewDetails;
 import licenta.backend.helpers.ReviewHelper;
+import licenta.backend.helpers.UserRoomHelper;
 import licenta.backend.model.Review;
 import licenta.backend.model.UserReview;
 import licenta.backend.service.ReviewService;
@@ -10,6 +11,7 @@ import licenta.backend.service.UserReviewService;
 import licenta.backend.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,5 +41,9 @@ public class ReviewsController {
     userReview.setReview(review);
     reviewService.save(review);
     userReviewService.save(userReview);
+}
+@GetMapping("/reviewed/{id}")
+    public  List<UserRoomHelper> getRoomsReviewed(@PathVariable Long id){
+        return  userReviewService.getRoomsReviewed(id);
 }
 }

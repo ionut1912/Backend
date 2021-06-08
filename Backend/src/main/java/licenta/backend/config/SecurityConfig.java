@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/reviews/{id}").permitAll()
                 .antMatchers(HttpMethod.POST, "/reviews").permitAll().
                  antMatchers(HttpMethod.GET,"/room//freerooms/{roomtype}").permitAll().
-
+                antMatchers(HttpMethod.GET,"/user/rooms/{id}").permitAll().
                 antMatchers(HttpMethod.GET, "/room/all").permitAll().
                 antMatchers(HttpMethod.POST, "/room/views").permitAll().
                 antMatchers(HttpMethod.GET, "/room/views/{id}").permitAll().
@@ -92,6 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/reservations").permitAll()
                 .antMatchers(HttpMethod.GET,"/reservations/all").permitAll()
                 .antMatchers(HttpMethod.GET,"/reservations/{id}").permitAll().
+                antMatchers(HttpMethod.GET,"/reviews/reviewed/{id}").permitAll().
         antMatchers(HttpMethod.POST,"/user").permitAll()
                 .antMatchers(HttpMethod.PATCH,"/reservations/{id}").permitAll()
                 .antMatchers(HttpMethod.PATCH,"/reservations/delete/{id}").permitAll()

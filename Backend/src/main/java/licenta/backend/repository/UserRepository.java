@@ -2,6 +2,7 @@ package licenta.backend.repository;
 
 import licenta.backend.helpers.HotelReviewHelper;
 import licenta.backend.helpers.UserData;
+import licenta.backend.helpers.UserRoomHelper;
 import licenta.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +22,6 @@ public interface UserRepository  extends JpaRepository<User,Long> {
     UserData getUserDetails(String username);
     @Query(value = "select hotelreview,name from users where hotelreview is not null ;",nativeQuery = true)
     List<HotelReviewHelper> getHotelReview();
-
+    @Query(value = "select distinct roomid from reservations inner join roomreservations where userid=?1",nativeQuery = true)
+      List<UserRoomHelper> getUserRooms(Long userid);
 }
