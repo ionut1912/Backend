@@ -72,8 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET, "/reviews/{id}").permitAll()
                 .antMatchers(HttpMethod.POST, "/reviews").permitAll().
-                 antMatchers(HttpMethod.GET,"/room//freerooms/{roomtype}").permitAll().
-                antMatchers(HttpMethod.GET,"/user/rooms/{id}").permitAll().
+                antMatchers(HttpMethod.GET, "/room//freerooms/{roomtype}").permitAll().
+                antMatchers(HttpMethod.GET, "/user/rooms/{id}").permitAll().
                 antMatchers(HttpMethod.GET, "/room/all").permitAll().
                 antMatchers(HttpMethod.POST, "/room/views").permitAll().
                 antMatchers(HttpMethod.GET, "/room/views/{id}").permitAll().
@@ -83,23 +83,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers(HttpMethod.DELETE, "/room/images/{id}").permitAll().
                 antMatchers(HttpMethod.PATCH, "/room/{id}").permitAll().
                 antMatchers(HttpMethod.DELETE, "/room/{id}").permitAll().
-                antMatchers(HttpMethod.GET,"/user/{id}").permitAll().
-                antMatchers(HttpMethod.GET,"/user/hotelreview").permitAll().
-                antMatchers(HttpMethod.DELETE,"/user/{id}").permitAll().
-                antMatchers(HttpMethod.GET,"/user").permitAll().
+                antMatchers(HttpMethod.GET, "/user/{id}").permitAll().
+                antMatchers(HttpMethod.GET, "/user/hotelreview").permitAll().
+                antMatchers(HttpMethod.DELETE, "/user/{id}").permitAll().
+                antMatchers(HttpMethod.GET, "/user").permitAll().
                 antMatchers(HttpMethod.GET, "/user/user1/{username}").permitAll()
-                .antMatchers(HttpMethod.GET,"/reservations").permitAll()
-                .antMatchers(HttpMethod.POST,"/reservations").permitAll()
-                .antMatchers(HttpMethod.GET,"/reservations/all").permitAll()
-                .antMatchers(HttpMethod.GET,"/reservations/{id}").permitAll().
-                antMatchers(HttpMethod.GET,"/reviews/reviewed/{id}").permitAll().
-        antMatchers(HttpMethod.POST,"/user").permitAll()
-                .antMatchers(HttpMethod.PATCH,"/reservations/{id}").permitAll()
-                .antMatchers(HttpMethod.PATCH,"/reservations/delete/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/reservations").permitAll()
+                .antMatchers(HttpMethod.POST, "/reservations").permitAll()
+                .antMatchers(HttpMethod.GET, "/reservations/all").permitAll()
+                .antMatchers(HttpMethod.GET, "/reservations/{id}").permitAll().
+                antMatchers(HttpMethod.GET, "/reviews/reviewed/{id}").permitAll().
+                antMatchers(HttpMethod.GET,"/user/nrofusers").permitAll().
+                antMatchers(HttpMethod.POST, "/user").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/reservations/{id}").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/reservations/delete/{id}").permitAll()
                 .antMatchers(HttpMethod.POST, "/reservations").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/user/{id}").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/user/{id}/type").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/user/updatehotelreview/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"room/nrofrooms").permitAll().
+                antMatchers(HttpMethod.GET,"/nrofreservations").permitAll()
+                .antMatchers(HttpMethod.GET,"/freeroomsbytype").permitAll().
+                antMatchers(HttpMethod.GET,"/roomsbytype").permitAll().
+                antMatchers(HttpMethod.GET,"/usersbytype").permitAll()
+                .antMatchers(HttpMethod.GET,"/nrroomsbytype").permitAll()
+                .antMatchers(HttpMethod.GET,"/userreservations").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

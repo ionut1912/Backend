@@ -1,5 +1,8 @@
 package licenta.backend.service;
 
+import licenta.backend.helpers.FreeRoomsByType;
+import licenta.backend.helpers.NrOfReservationsHelper;
+import licenta.backend.helpers.ReservationsByType;
 import licenta.backend.model.RoomReservation;
 import licenta.backend.repository.RoomReservationRepository;
 import org.springframework.stereotype.Service;
@@ -40,8 +43,16 @@ public class RoomReservationService {
     public void delete(RoomReservation roomReservation) {
         roomReservationRepository.delete(roomReservation);
     }
-
-
+    public  NrOfReservationsHelper getNrOfReservations()
+    {
+        return  roomReservationRepository.getNrOfReservations();
+    }
+    public  List<ReservationsByType> getNrOfReservationsByType(){
+       return   roomReservationRepository.getReservationsByType();
+    }
+    public  List<FreeRoomsByType> getNrOfFreeReservationsByType(){
+        return  roomReservationRepository.getRoomFreeByType();
+    }
     }
 
 

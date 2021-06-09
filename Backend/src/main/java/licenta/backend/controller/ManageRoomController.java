@@ -129,9 +129,15 @@ public RoomViewed save(@RequestBody RoomViewedHelper roomViewed){
     RoomViewed roomViewed = roomViewedService.fiindAllById(id).orElseThrow(() -> new ResourceNotFoundException("Vizualizarea cu id-ul " + id + " nu exista "));
     return roomViewedService.getNrOfViews(id);
 }
-@GetMapping("/freerooms/{roomtype}")
-    public  NrOfFreeRoomsHelper getNrOfFreeRooms(@PathVariable String roomtype)
-{
-    return  roomService.getNrOfFreeRooms(roomtype);
+
+@GetMapping("/nrofrooms")
+    public  NrOfRoomsHelper getNrOfRooms(){
+        return  roomService.getNrOfRooms();
+
+}
+@GetMapping("/nrroomsbytype")
+    public List<NrRoomsByType> getNrOfRoomsByType(){
+        return  roomService.getNrRoomsByType();
+
 }
 }

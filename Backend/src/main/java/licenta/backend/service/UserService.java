@@ -1,9 +1,7 @@
 package licenta.backend.service;
 
 import licenta.backend.exception.ResourceNotFoundException;
-import licenta.backend.helpers.HotelReviewHelper;
-import licenta.backend.helpers.UserData;
-import licenta.backend.helpers.UserRoomHelper;
+import licenta.backend.helpers.*;
 import licenta.backend.model.User;
 import licenta.backend.repository.UserRepository;
 
@@ -70,5 +68,14 @@ public  List<HotelReviewHelper> getReviews(){
 }
 public  List<UserRoomHelper> getRooms(Long id){
         return  this.userRepository.getUserRooms(id);
+}
+public NrOfUsersHelpers getNrOfUsers(){
+   return  userRepository.getNrOfUsers();
+}
+public  List<UsersByTypeHelper> getUsersByType(){
+        return  userRepository.getUsersByType();
+}
+public  List<NrOfUserReservation> getNrOfUsersReservations(){
+        return  userRepository.getUsersReservations();
 }
 }

@@ -1,8 +1,7 @@
 package licenta.backend.controller;
 
 import licenta.backend.exception.ResourceNotFoundException;
-import licenta.backend.helpers.ReservationHelper;
-import licenta.backend.helpers.UserReservationHelper;
+import licenta.backend.helpers.*;
 import licenta.backend.model.Rezervation;
 import licenta.backend.model.Room;
 import licenta.backend.model.RoomReservation;
@@ -78,8 +77,17 @@ rezervation1.setCheckout(rezervation.getCheckout());
     return  ResponseEntity.ok(modifiedrezervation);
 }
 
-
-
-
-
+@GetMapping("/nrofreservations")
+    public  NrOfReservationsHelper getNrOfReservations()
+{
+    return roomReservationService.getNrOfReservations();
+}
+@GetMapping("/roomsbytype")
+public  List<ReservationsByType> getReservationsByType(){
+        return  roomReservationService.getNrOfReservationsByType();
+}
+    @GetMapping("/freeroomsbytype")
+    public  List<FreeRoomsByType> getfreeReservationsByType(){
+        return  roomReservationService.getNrOfFreeReservationsByType();
+    }
 }
