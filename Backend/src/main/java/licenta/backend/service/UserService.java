@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 
 import javax.annotation.Resource;
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,7 +79,13 @@ public  List<UsersByTypeHelper> getUsersByType(){
 public  List<NrOfUserReservation> getNrOfUsersReservations(){
         return  userRepository.getUsersReservations();
 }
-public  UserEmailHelper findUserByEmail(String username){
-        return  userRepository.findEmailByUsername(username);
+public boolean existsByEmail(String email){
+        return  userRepository.existsByEmail(email);
+}
+public  UserCodeHelper findUserByEmail(String  email){
+        return  userRepository.findUserByEmail(email);
+}
+public  FindCodeHelper findUserCode(Long id){
+        return  userRepository.findUserCode(id);
 }
 }

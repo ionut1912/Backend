@@ -1,6 +1,6 @@
 package licenta.backend.controller;
 
-import licenta.backend.helpers.UserEmailHelper;
+
 import licenta.backend.jwt.JwtUtils;
 import licenta.backend.model.Erole;
 import licenta.backend.model.User;
@@ -88,7 +88,6 @@ public class AuthController {
 
         user.setType(Erole.ROLE_USER);
         user.setEnabled(true);
-
 
         userService.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

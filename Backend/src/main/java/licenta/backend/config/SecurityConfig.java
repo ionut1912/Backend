@@ -108,7 +108,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers(HttpMethod.GET,"/usersbytype").permitAll()
                 .antMatchers(HttpMethod.GET,"/nrroomsbytype").permitAll()
                 .antMatchers(HttpMethod.GET,"/userreservations").permitAll()
-
+                .antMatchers(HttpMethod.GET,"/user/emails/{email}").permitAll()
+                .antMatchers(HttpMethod.PATCH,"/user/usercode/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"/user/usercode/{id}").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

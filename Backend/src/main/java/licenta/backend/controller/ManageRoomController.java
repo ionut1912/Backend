@@ -5,14 +5,12 @@ import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.*;
 import licenta.backend.model.Room;
 import licenta.backend.model.RoomImages;
-import licenta.backend.model.RoomViewed;
 import licenta.backend.service.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,8 +26,7 @@ public class ManageRoomController {
     RoomService roomService;
     @Resource
     RoomReservationService roomReservationService;
-@Resource
-    RoomViewedService roomViewedService;
+
 @Resource
     UserService userService;
     @GetMapping("/{checkin}/{checkout}")
@@ -119,16 +116,7 @@ for(int i=0;i<images.getImagepath().length;i++){
     public  void  deleteById(@PathVariable Long id){
         roomService.deleteRoombyId(id);
     }
-@PostMapping("/views")
-public RoomViewed save(@RequestBody RoomViewedHelper roomViewed){
-     RoomViewed roomViewed1=new RoomViewed(roomService.getOneById(roomViewed.getRoomid()),userService.getOneById(roomViewed.getUserid()));
-     return  roomViewedService.save(roomViewed1);
-}
-@GetMapping("/views/{id}")
-    public  NrOfVIewsHelper  getNrofViews(@PathVariable Long id){
-    RoomViewed roomViewed = roomViewedService.fiindAllById(id).orElseThrow(() -> new ResourceNotFoundException("Vizualizarea cu id-ul " + id + " nu exista "));
-    return roomViewedService.getNrOfViews(id);
-}
+
 
 @GetMapping("/nrofrooms")
     public  NrOfRoomsHelper getNrOfRooms(){
