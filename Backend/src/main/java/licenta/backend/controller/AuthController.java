@@ -1,6 +1,6 @@
 package licenta.backend.controller;
 
-import licenta.backend.helpers.UserEmailHelper;
+
 import licenta.backend.jwt.JwtUtils;
 import licenta.backend.model.Erole;
 import licenta.backend.model.User;

@@ -78,7 +78,5 @@ public  List<UsersByTypeHelper> getUsersByType(){
 public  List<NrOfUserReservation> getNrOfUsersReservations(){
         return  userRepository.getUsersReservations();
 }
-public  UserEmailHelper findUserByEmail(String username){
-        return  userRepository.findEmailByUsername(username);
-}
+
 }

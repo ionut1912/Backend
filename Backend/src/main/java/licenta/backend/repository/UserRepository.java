@@ -30,9 +30,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "select type, count(userid) as nrofusersbytype from users  group by type", nativeQuery = true)
     List<UsersByTypeHelper> getUsersByType();
-    @Query(value = "select username,count(users.userid) as nrofuserreservations from users inner join reservations on reservations.userid=users.userid group by username",nativeQuery = true)
-    List<NrOfUserReservation> getUsersReservations();
-    @Query(value = "select email from users where username=?1",nativeQuery = true)
-    UserEmailHelper findEmailByUsername(String username);
-}
 
+    @Query(value = "select username,count(users.userid) as nrofuserreservations from users inner join reservations on reservations.userid=users.userid group by username", nativeQuery = true)
+    List<NrOfUserReservation> getUsersReservations();
+
+
+}
