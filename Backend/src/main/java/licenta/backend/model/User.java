@@ -6,10 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -45,6 +42,10 @@ public class User implements UserDetails {
 
     @Column(name = "hotelreview")
     private String hotelreview;
+   @Column(name = "usercode")
+   private  String usercode;
+
+
 
     public User() {
     }
@@ -155,6 +156,14 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
+    public String getUsercode() {
+        return usercode;
+    }
+
+    public void setUsercode(String usercode) {
+        this.usercode = usercode;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -162,6 +171,7 @@ public class User implements UserDetails {
 
         return authorities;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

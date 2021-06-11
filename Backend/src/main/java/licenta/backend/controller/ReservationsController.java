@@ -31,7 +31,8 @@ public class ReservationsController {
     RoomReservationService roomReservationService;
     @Resource
     RoomService roomService;
-
+@Resource
+EmailService emailService;
 
     @PostMapping
     public void saveReservation(@RequestBody ReservationHelper helper) {
@@ -41,7 +42,9 @@ public class ReservationsController {
         List<RoomReservation> reservations=new ArrayList<RoomReservation>();
         reservations.add(roomReservation);
         rezervation.setRoomReservations(reservations);
+
         roomReservation.setRezervation(rezervation);
+        emailService.sendMail(helper.getEmail(),"Rezervarea a fost realizata", "Buna ziua!Rezervarea dumneavoastra a fost creata cu succes pe data de " +   helper.getCheckin()  +  " . Va asteptam!");
         rezervationService.save(rezervation);
         roomReservationService.save(roomReservation);
     }

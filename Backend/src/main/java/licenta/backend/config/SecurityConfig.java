@@ -69,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/room/images").permitAll()
                 .antMatchers(HttpMethod.GET, "/room/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/room/details").permitAll()
-
+                .antMatchers(HttpMethod.GET,"/email/{username}").permitAll()
                 .antMatchers(HttpMethod.GET, "/reviews/{id}").permitAll()
                 .antMatchers(HttpMethod.POST, "/reviews").permitAll().
                 antMatchers(HttpMethod.GET, "/room//freerooms/{roomtype}").permitAll().
@@ -108,6 +108,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers(HttpMethod.GET,"/usersbytype").permitAll()
                 .antMatchers(HttpMethod.GET,"/nrroomsbytype").permitAll()
                 .antMatchers(HttpMethod.GET,"/userreservations").permitAll()
+
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

@@ -1,5 +1,6 @@
 package licenta.backend.controller;
 
+import licenta.backend.helpers.UserEmailHelper;
 import licenta.backend.jwt.JwtUtils;
 import licenta.backend.model.Erole;
 import licenta.backend.model.User;
@@ -8,6 +9,7 @@ import licenta.backend.payload.request.SignupRequest;
 import licenta.backend.payload.response.JwtResponse;
 import licenta.backend.payload.response.MessageResponse;
 import licenta.backend.repository.UserRepository;
+import licenta.backend.service.EmailService;
 import licenta.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,6 +45,7 @@ public class AuthController {
     @Resource
 
     JwtUtils jwtUtils;
+
 
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -90,4 +93,5 @@ public class AuthController {
         userService.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
 }

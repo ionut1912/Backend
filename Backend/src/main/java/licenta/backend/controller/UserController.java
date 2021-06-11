@@ -105,6 +105,7 @@ public  void deleteUser(@PathVariable Long id){
     public  List<NrOfUserReservation> getUserReservations(){
         return  userService.getNrOfUsersReservations();
 }
+
 }
 
 
