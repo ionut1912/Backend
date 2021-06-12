@@ -1,6 +1,5 @@
 package licenta.backend.controller;
 
-import com.google.common.annotations.GwtCompatible;
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.*;
 import licenta.backend.model.Erole;
@@ -13,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.validation.GroupSequence;
 import java.util.List;
 
 @RestController
@@ -110,8 +108,8 @@ public  void deleteUser(@PathVariable Long id){
         return  userService.getNrOfUsersReservations();
 }
 @GetMapping("/emails/{email}")
-    public  UserCodeHelper findUserByEmail(@PathVariable String email){
-        return  userService.findUserByEmail(email);
+    public UserEmailHelper findUserByEmail(@PathVariable String email){
+        return  userService.getUser(email);
 }
 @PatchMapping("/usercode/{id}")
     public ResponseEntity<?> saveCode(@PathVariable Long id,@RequestBody UserHelper helper)
