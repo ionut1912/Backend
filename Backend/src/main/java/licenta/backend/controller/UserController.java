@@ -130,7 +130,7 @@ public  void deleteUser(@PathVariable Long id){
 
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
         user1.setPassword(encoder.encode(helper.getPassword()));
-        emailService.sendMail(helper.getEmail(),"Parola schimbata cu succes!" , "Buna ziua! Parola a fost schimbata cu succes!");
+        emailService.sendMail(helper.getEmail(),"Parola  schimbata cu succes!" , "Buna ziua! Parola a fost schimbata cu succes!");
         userService.save(user1);
         return ResponseEntity.ok(new MessageResponse("Parola a fost schimbata cu succes!"));
     }
