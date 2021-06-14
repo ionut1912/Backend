@@ -87,6 +87,6 @@ public  UserEmailHelper getUser(String  email){
     }
 
     public boolean existsByEmail(String email) {
-        return  userRepository.existsByEmail(email);
+        return  userRepository.existsByemail(email);
     }
 }

@@ -1,8 +1,10 @@
 package licenta.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -39,12 +41,12 @@ public class RoomReservation {
     @JoinColumn(name = "reservationid")
     @JsonBackReference("reservation-roomReservation")
     private Rezervation rezervation;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "checkin")
-    private Date checkin;
-
+    private LocalDate checkin;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "checkout")
-    private Date checkout;
+    private LocalDate checkout;
 
     @Column(name = "noofrooms")
     private int noofrooms;
@@ -59,7 +61,7 @@ public class RoomReservation {
     @Column(name = "noofchildrens")
     private int noofchildrens;
 
-    public RoomReservation(Room room, Date checkin, Date checkout, int noofrooms, int noofadults, int noofchildrens) {
+    public RoomReservation(Room room, LocalDate checkin, LocalDate checkout, int noofrooms, int noofadults, int noofchildrens) {
         this.room = room;
 
 
@@ -104,19 +106,19 @@ public class RoomReservation {
         this.rezervation = rezervation;
     }
 
-    public Date getCheckin() {
+    public LocalDate getCheckin() {
         return checkin;
     }
 
-    public void setCheckin(Date checkin) {
+    public void setCheckin(LocalDate checkin) {
         this.checkin = checkin;
     }
 
-    public Date getCheckout() {
+    public LocalDate getCheckout() {
         return checkout;
     }
 
-    public void setCheckout(Date checkout) {
+    public void setCheckout(LocalDate checkout) {
         this.checkout = checkout;
     }
 

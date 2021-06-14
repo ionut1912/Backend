@@ -3,16 +3,26 @@ package licenta.backend.controller;
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.*;
 import licenta.backend.model.Erole;
+import licenta.backend.model.Notifications;
+import licenta.backend.model.Rezervation;
 import licenta.backend.model.User;
 import licenta.backend.payload.response.MessageResponse;
 import licenta.backend.service.EmailService;
+import licenta.backend.service.NotificationService;
+import licenta.backend.service.RezervationService;
 import licenta.backend.service.UserService;
+
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
+import javax.persistence.GeneratedValue;
 import java.util.List;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -22,9 +32,13 @@ public class UserController {
     private UserService userService;
 @Resource
     EmailService emailService;
-
 @Resource
-    PasswordEncoder encoder;
+    RezervationService service;
+//
+//@Resource
+//PasswordEncoder  encoder;
+    BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+
     @GetMapping
     public List<User> getAll() {
         return userService.findAll();
@@ -114,31 +128,46 @@ public  void deleteUser(@PathVariable Long id){
 @PatchMapping("/usercode/{id}")
     public ResponseEntity<?> saveCode(@PathVariable Long id,@RequestBody UserHelper helper)
 {
-    if(!userService.existsByEmail(helper.getEmail()))
-    {
-        return  ResponseEntity.badRequest().body(new MessageResponse("Email-ul " + helper.getEmail()+ " nu exista"));
+    if(userService.existsByEmail(helper.getEmail()))
+    {  User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
+        user1.setUsercode(helper.getUsercode());
+        emailService.sendMail(helper.getEmail(),"Schimbare parola!" , "Buna ziua! Cererea pentru schimbarea parolei a fost inregistrata,iar codul de resetare este:   " +  user1.getUsercode());
+        userService.save(user1);
+        return ResponseEntity.ok(new MessageResponse("Codul a fost introdus cu succes!"));
+
     }
-    User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
-    user1.setUsercode(helper.getUsercode());
-    emailService.sendMail(helper.getEmail(),"Schimbare parola!" , "Buna ziua! Cererea pentru schimbarea parolei a fost inregistrata,iar codul de resetare este:   " +  user1.getUsercode());
-    userService.save(user1);
-    return ResponseEntity.ok(new MessageResponse("Codul a fost introdus cu succes!"));
+    return  ResponseEntity.badRequest().body(new MessageResponse("Email-ul " + helper.getEmail()+ " nu exista"));
 }
     @PatchMapping("/password/{id}")
     public ResponseEntity<?> updatePassword(@PathVariable Long id,@RequestBody UserHelper helper)
     {
 
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
-        user1.setPassword(encoder.encode(helper.getPassword()));
-        emailService.sendMail(helper.getEmail(),"Parola  schimbata cu succes!" , "Buna ziua! Parola a fost schimbata cu succes!");
-        userService.save(user1);
-        return ResponseEntity.ok(new MessageResponse("Parola a fost schimbata cu succes!"));
+
+
+      if(!encoder.matches(helper.getPassword(),user1.getPassword()))
+
+        {
+
+            user1.setPassword(encoder.encode(helper.getPassword()));
+
+            emailService.sendMail(helper.getEmail(),"Parola  schimbata cu succes!" , "Buna ziua! Parola a fost schimbata cu succes!");
+            userService.save(user1);
+            return ResponseEntity.ok(new MessageResponse("Parola a fost schimbata cu succes!"));
+        }
+
+        return  ResponseEntity.badRequest().body(new MessageResponse("Parola introdusa este aceeasi cu cea existenta"));
     }
 @GetMapping("/usercode/{id}")
     public  FindCodeHelper findCode(@PathVariable Long id){
         return  userService.findUserCode(id);
 }
+@GetMapping("/expire")
+    public List<Rezervation> getAllExpire(){
+        return service.findByDate();
 }
+}
+
 
 
 

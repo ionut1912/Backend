@@ -75,7 +75,7 @@ public class AuthController {
                     .body(new MessageResponse("Error: Numele de utilizator  este existent!"));
         }
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userRepository.existsByemail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email-ul este existent!"));

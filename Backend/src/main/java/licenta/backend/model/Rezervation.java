@@ -1,10 +1,13 @@
 package licenta.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -29,10 +32,10 @@ public class Rezervation {
     private String roomtype;
 
     @Column(name = "checkin")
-    private Date checkin;
+    private LocalDate checkin;
 
     @Column(name = "checkout")
-    private Date checkout;
+    private LocalDate checkout;
 
 
     @Column(name = "deleted")
@@ -47,7 +50,7 @@ public class Rezervation {
     @JsonManagedReference("reservation-roomReservation")
     private List<RoomReservation> roomReservations;
 
-    public Rezervation(String name, String email, String roomtype, Date checkin, Date checkout, boolean deleted, User user) {
+    public Rezervation(String name, String email, String roomtype, LocalDate checkin, LocalDate checkout, boolean deleted, User user) {
         this.name = name;
         this.email = email;
         this.roomtype = roomtype;
@@ -59,6 +62,8 @@ public class Rezervation {
 
     public Rezervation() {
     }
+
+
 
 
     public long getRezervationid() {
@@ -77,19 +82,20 @@ public class Rezervation {
         this.name = name;
     }
 
-    public Date getCheckin() {
+
+    public LocalDate getCheckin() {
         return checkin;
     }
 
-    public void setCheckin(Date checkin) {
+    public void setCheckin(LocalDate checkin) {
         this.checkin = checkin;
     }
 
-    public Date getCheckout() {
+    public LocalDate getCheckout() {
         return checkout;
     }
 
-    public void setCheckout(Date checkout) {
+    public void setCheckout(LocalDate checkout) {
         this.checkout = checkout;
     }
 

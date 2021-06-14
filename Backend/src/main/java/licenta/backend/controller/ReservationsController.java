@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.annotation.Resource;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,14 +38,15 @@ EmailService emailService;
     @PostMapping
     public void saveReservation(@RequestBody ReservationHelper helper) {
 
-        Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(), helper.getCheckin(), helper.getCheckout(), helper.isDeleted(), service.getOneById(helper.getUserid()));
-        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomid()),helper.getCheckin(),helper.getCheckout(),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
+        Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(),helper.getCheckin().plusDays(1), helper.getCheckout().plusDays(1), helper.isDeleted(), service.getOneById(helper.getUserid()));
+        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomid()),helper.getCheckin().plusDays(1),helper.getCheckout().plusDays(1),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
         List<RoomReservation> reservations=new ArrayList<RoomReservation>();
         reservations.add(roomReservation);
         rezervation.setRoomReservations(reservations);
 
         roomReservation.setRezervation(rezervation);
         emailService.sendMail(helper.getEmail(),"Rezervarea a fost realizata", "Buna ziua!Rezervarea dumneavoastra a fost creata cu succes pe data de " +   helper.getCheckin()  +  " . Va asteptam!");
+
         rezervationService.save(rezervation);
         roomReservationService.save(roomReservation);
     }
