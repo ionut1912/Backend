@@ -1,9 +1,6 @@
 package licenta.backend.helpers;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class ReservationHelper {
@@ -11,9 +8,9 @@ public class ReservationHelper {
     public  String email;
     public  String roomtype;
 
-    public LocalDate checkin;
+    public Date checkin;
 
-    public  LocalDate checkout;
+    public  Date checkout;
 
     public  boolean deleted;
     public  int userid;
@@ -48,19 +45,19 @@ public class ReservationHelper {
     }
 
 
-    public LocalDate getCheckin() {
+    public Date getCheckin() {
         return checkin;
     }
 
-    public void setCheckin(LocalDate checkin) {
+    public void setCheckin(Date checkin) {
         this.checkin = checkin;
     }
 
-    public LocalDate getCheckout() {
+    public Date getCheckout() {
         return checkout;
     }
 
-    public void setCheckout(LocalDate checkout) {
+    public void setCheckout(Date checkout) {
         this.checkout = checkout;
     }
 

@@ -15,8 +15,7 @@ import java.util.List;
 @Repository
 public interface RezervationRepository extends JpaRepository<Rezervation, Long> {
 
-    @Query(value = "SELECT reservations.reservationid, name,email,roomtype,reservations.checkin,reservations.checkout,deleted,userid  ,roomid FROM licenta.reservations inner join roomreservations on reservations.reservationid= roomreservations.reservationid where userid=?1",nativeQuery = true)
+    @Query(value = "SELECT reservations.reservationid, name,email,roomtype,reservations.checkin,reservations.checkout,deleted,userid  ,roomid FROM licenta.reservations inner join roomreservations on reservations.reservationid= roomreservations.reservationid where userid=?1", nativeQuery = true)
     List<UserReservationHelper> findRezervationByuserid(Long userId);
-@Query(value = "select * from reservations  where checkin=?1",nativeQuery = true)
-    List<Rezervation>  findCheckin(LocalDate checkin);
+
 }

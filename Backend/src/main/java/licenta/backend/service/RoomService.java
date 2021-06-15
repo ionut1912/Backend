@@ -1,15 +1,13 @@
 package licenta.backend.service;
 
-import licenta.backend.helpers.NrOfRoomsHelper;
-import licenta.backend.helpers.NrRoomsByType;
-import licenta.backend.helpers.RoomDetails;
-import licenta.backend.helpers.TotalPrice;
+import licenta.backend.helpers.*;
 import licenta.backend.model.Room;
 import licenta.backend.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.security.PublicKey;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -61,6 +59,13 @@ public  NrOfRoomsHelper getNrOfRooms(){
 }
 public List<NrRoomsByType> getNrRoomsByType(){
         return  roomRepository.getNrRoomsByType();
+}
+public FreeRoomsByTypeHelper getNrOfFreeRoomsAfterRezervationByType(String roomtype, Date checkin, Date checkout){
+        return  roomRepository.getNrOfFreeRoomsAfterReservationByType(roomtype,checkin,checkout);
+}
+public  FreeRoomsByTypeHelper getNrOfFreeRoomsByType(String roomtype)
+{
+        return  roomRepository.getNrOfFreeRoomsByType(roomtype);
 }
 }
 

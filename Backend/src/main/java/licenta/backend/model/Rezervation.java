@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
+
 import java.time.LocalDate;
 import java.util.List;
-
+import  java.util.Date;
 
 @Entity
 
@@ -32,10 +32,10 @@ public class Rezervation {
     private String roomtype;
 
     @Column(name = "checkin")
-    private LocalDate checkin;
+    private Date checkin;
 
     @Column(name = "checkout")
-    private LocalDate checkout;
+    private Date checkout;
 
 
     @Column(name = "deleted")
@@ -50,7 +50,7 @@ public class Rezervation {
     @JsonManagedReference("reservation-roomReservation")
     private List<RoomReservation> roomReservations;
 
-    public Rezervation(String name, String email, String roomtype, LocalDate checkin, LocalDate checkout, boolean deleted, User user) {
+    public Rezervation(String name, String email, String roomtype, Date checkin, Date checkout, boolean deleted, User user) {
         this.name = name;
         this.email = email;
         this.roomtype = roomtype;
@@ -83,19 +83,19 @@ public class Rezervation {
     }
 
 
-    public LocalDate getCheckin() {
+    public Date getCheckin() {
         return checkin;
     }
 
-    public void setCheckin(LocalDate checkin) {
+    public void setCheckin(Date checkin) {
         this.checkin = checkin;
     }
 
-    public LocalDate getCheckout() {
+    public Date getCheckout() {
         return checkout;
     }
 
-    public void setCheckout(LocalDate checkout) {
+    public void setCheckout(Date checkout) {
         this.checkout = checkout;
     }
 

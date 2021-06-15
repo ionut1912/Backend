@@ -8,6 +8,7 @@ import licenta.backend.model.RoomReservation;
 import licenta.backend.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,8 +39,8 @@ EmailService emailService;
     @PostMapping
     public void saveReservation(@RequestBody ReservationHelper helper) {
 
-        Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(),helper.getCheckin().plusDays(1), helper.getCheckout().plusDays(1), helper.isDeleted(), service.getOneById(helper.getUserid()));
-        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomid()),helper.getCheckin().plusDays(1),helper.getCheckout().plusDays(1),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
+        Rezervation rezervation = new Rezervation(helper.getName(), helper.getEmail(), helper.getRoomtype(),helper.getCheckin(), helper.getCheckout(), helper.isDeleted(), service.getOneById(helper.getUserid()));
+        RoomReservation roomReservation=new RoomReservation(roomService.getOneById(helper.getRoomid()),helper.getCheckin(),helper.getCheckout(),helper.getNoofrooms(),helper.getNoofadults(),helper.getNoofchildrens());
         List<RoomReservation> reservations=new ArrayList<RoomReservation>();
         reservations.add(roomReservation);
         rezervation.setRoomReservations(reservations);
@@ -95,4 +96,7 @@ public  List<ReservationsByType> getReservationsByType(){
     public  List<FreeRoomsByType> getfreeReservationsByType(){
         return  roomReservationService.getNrOfFreeReservationsByType();
     }
+
+
+
 }

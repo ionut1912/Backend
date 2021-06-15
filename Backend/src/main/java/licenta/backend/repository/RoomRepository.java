@@ -1,9 +1,6 @@
 package licenta.backend.repository;
 
-import licenta.backend.helpers.NrOfRoomsHelper;
-import licenta.backend.helpers.NrRoomsByType;
-import licenta.backend.helpers.RoomDetails;
-import licenta.backend.helpers.TotalPrice;
+import licenta.backend.helpers.*;
 import licenta.backend.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,6 +22,12 @@ List<RoomDetails> getRommInfoNotRezerved();
 @Query(value = "select count(roomid) as nrofrooms from rooms",nativeQuery = true)
     NrOfRoomsHelper getNrOfRooms();
 @Query(value = "select roomtype,count(roomid) as nrofroomsbytype from rooms group by roomtype",nativeQuery = true)
+
     List<NrRoomsByType> getNrRoomsByType();
+@Query(value = "select count(roomid) as nroffreerooms from rooms where (roomtype=?1 and roomid in (select roomid from roomreservations where ((checkin<?2 and checkout<?2) or (checkin >?3 and checkout>?3))))",nativeQuery = true)
+FreeRoomsByTypeHelper getNrOfFreeRoomsAfterReservationByType(String roomtype, Date checkin, Date checkout);
+@Query(value = "select count(roomid) as nroffreerooms from rooms where (roomtype=?1 and roomid in (select roomid from rooms where roomid not in(select roomid from roomreservations)))",nativeQuery = true)
+ FreeRoomsByTypeHelper getNrOfFreeRoomsByType(String  roomtype);
 }
+
 

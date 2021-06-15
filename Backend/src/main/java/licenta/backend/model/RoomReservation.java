@@ -43,10 +43,10 @@ public class RoomReservation {
     private Rezervation rezervation;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "checkin")
-    private LocalDate checkin;
+    private Date checkin;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "checkout")
-    private LocalDate checkout;
+    private Date checkout;
 
     @Column(name = "noofrooms")
     private int noofrooms;
@@ -61,7 +61,7 @@ public class RoomReservation {
     @Column(name = "noofchildrens")
     private int noofchildrens;
 
-    public RoomReservation(Room room, LocalDate checkin, LocalDate checkout, int noofrooms, int noofadults, int noofchildrens) {
+    public RoomReservation(Room room, Date checkin, Date checkout, int noofrooms, int noofadults, int noofchildrens) {
         this.room = room;
 
 
@@ -106,19 +106,19 @@ public class RoomReservation {
         this.rezervation = rezervation;
     }
 
-    public LocalDate getCheckin() {
+    public Date getCheckin() {
         return checkin;
     }
 
-    public void setCheckin(LocalDate checkin) {
+    public void setCheckin(Date checkin) {
         this.checkin = checkin;
     }
 
-    public LocalDate getCheckout() {
+    public Date getCheckout() {
         return checkout;
     }
 
-    public void setCheckout(LocalDate checkout) {
+    public void setCheckout(Date checkout) {
         this.checkout = checkout;
     }
 

@@ -46,10 +46,6 @@ public List<UserReservationHelper> findByUserId(Long user)
         return  rezervationRepository.findRezervationByuserid(user);
 }
 
-public  List<Rezervation> findByDate()
-{LocalDate date=LocalDate.now().plusDays(7);
-return  rezervationRepository.findCheckin(date);
 
-}
 }
 
