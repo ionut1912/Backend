@@ -30,9 +30,7 @@ public class UserController {
     EmailService emailService;
 @Resource
     RezervationService service;
-//
-//@Resource
-//PasswordEncoder  encoder;
+
     BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 
     @GetMapping
