@@ -46,7 +46,7 @@ EmailService emailService;
         rezervation.setRoomReservations(reservations);
 
         roomReservation.setRezervation(rezervation);
-        emailService.sendMail(helper.getEmail(),"Rezervarea a fost realizata", "Buna ziua!Rezervarea dumneavoastra a fost creata cu succes pe data de " +   helper.getCheckin()  +  " . Va asteptam!");
+        emailService.sendMail(helper.getEmail(),"Rezervarea a fost realizata", "Buna ziua! Rezervarea dumneavoastra a fost creata cu succes pe data de " +   helper.getCheckin()  +  " . Va asteptam!");
 
         rezervationService.save(rezervation);
         roomReservationService.save(roomReservation);
