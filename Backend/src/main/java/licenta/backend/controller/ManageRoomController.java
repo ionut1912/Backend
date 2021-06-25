@@ -88,6 +88,7 @@ public class ManageRoomController {
 
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PatchMapping("/{id}")
     public ResponseEntity<Room> updateRoom(@PathVariable Long id, @RequestBody RoomHelper room) {
         Room room1 = roomService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Camera cu id-ul " + id + " nu exista"));
@@ -116,6 +117,7 @@ public class ManageRoomController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         roomService.deleteRoombyId(id);
