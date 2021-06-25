@@ -12,6 +12,7 @@ import licenta.backend.service.UserService;
 
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,7 @@ public class UserController {
     RezervationService service;
 
     BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public List<User> getAll() {
         return userService.findAll();
@@ -75,6 +76,7 @@ public class UserController {
 
 
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PatchMapping("/updatehotelreview/{id}")
     public ResponseEntity<User> updatehotelreview(@PathVariable Long id,@RequestBody UserHelper user) {
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
@@ -88,7 +90,7 @@ public class UserController {
 public  void deleteUser(@PathVariable Long id){
         this.userService.deleteUser(id);
 }
-
+@PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user1/{username}")
     public UserData getUserData(@PathVariable String username) {
         return userService.getData(username);
@@ -103,14 +105,17 @@ public  void deleteUser(@PathVariable Long id){
     public  List<UserRoomHelper> getUserRooms(@PathVariable Long id){
       return   this.userService.getRooms(id);
 }
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @GetMapping("/nrofusers")
     public NrOfUsersHelpers getNrOfUsers(){
         return userService.getNrOfUsers();
 }
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @GetMapping("/usersbytype")
     public  List<UsersByTypeHelper> getUsersByType(){
         return  userService.getUsersByType();
 }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
 @GetMapping("/userreservations")
     public  List<NrOfUserReservation> getUserReservations(){
         return  userService.getNrOfUsersReservations();

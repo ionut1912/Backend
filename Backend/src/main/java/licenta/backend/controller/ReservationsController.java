@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -55,15 +56,17 @@ EmailService emailService;
     public List<RoomReservation> getAll(){
         return  roomReservationService.findAll();
     }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/all")
     public List<Rezervation> getAllRezervations(){
         return rezervationService.findAll();
     }
+   @PreAuthorize("hasRole('ROLE_USER')")
    @GetMapping("/{id}")
     public  List<UserReservationHelper> findUserById(@PathVariable  Long id){
         return  rezervationService.findByUserId(id);
 }
-
+    @PreAuthorize("hasRole('ROLE_USER')")
 @PatchMapping("/{id}")
     public ResponseEntity<Rezervation> updateRezervation(@PathVariable Long id ,@RequestBody ReservationHelper rezervation){
     Rezervation rezervation1=rezervationService.findById(id).orElseThrow(()->new ResourceNotFoundException("Rezervarea cu id-ul " + id + " nu exista" ));
@@ -75,6 +78,7 @@ rezervation1.setCheckout(rezervation.getCheckout());
     Rezervation modifiedrezervation=rezervationService.save(rezervation1);
     return  ResponseEntity.ok(modifiedrezervation);
 }
+    @PreAuthorize("hasRole('ROLE_USER')")
 @PatchMapping("/delete/{id}")
     public  ResponseEntity<Rezervation> deleteRezervation(@PathVariable Long id,@RequestBody ReservationHelper rezervation){
     Rezervation rezervation1=rezervationService.findById(id).orElseThrow(()->new ResourceNotFoundException("Rezervarea cu id-ul " + id + " nu exista" ));
@@ -82,7 +86,7 @@ rezervation1.setCheckout(rezervation.getCheckout());
     Rezervation modifiedrezervation=rezervationService.save(rezervation1);
     return  ResponseEntity.ok(modifiedrezervation);
 }
-
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @GetMapping("/nrofreservations")
     public  NrOfReservationsHelper getNrOfReservations()
 {

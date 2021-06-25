@@ -9,6 +9,7 @@ import licenta.backend.service.ReviewService;
 import licenta.backend.service.RoomService;
 import licenta.backend.service.UserReviewService;
 import licenta.backend.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -26,11 +27,13 @@ public class ReviewsController {
     ReviewService reviewService;
     @Resource
     RoomService roomService;
-@Resource UserService service;
+@Resource
+UserService service;
     @GetMapping("/{id}")
     public List<ReviewDetails> getAll(@PathVariable int id) {
         return userReviewService.getAll(id);
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
 @PostMapping
     public  void saveReview(@RequestBody ReviewHelper reviewHelper){
      Review review = new Review(reviewHelper.getReviewTitle(),reviewHelper.getReviewText());
