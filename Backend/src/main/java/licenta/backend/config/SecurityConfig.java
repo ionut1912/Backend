@@ -81,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers(HttpMethod.POST, "/room/images").permitAll().
                 antMatchers(HttpMethod.PATCH, "/room/images/{id}").permitAll().
                 antMatchers(HttpMethod.DELETE, "/room/images/{id}").permitAll().
-  
+
 
                 antMatchers(HttpMethod.GET, "/user/{id}").permitAll().
                 antMatchers(HttpMethod.GET, "/user/hotelreview").permitAll()
