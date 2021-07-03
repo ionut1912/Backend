@@ -142,7 +142,7 @@ public class ManageRoomController {
     public FreeRoomsByTypeHelper getFreeRoomsByTypeAfterReservation(@PathVariable String roomtype, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout) {
         return roomService.getNrOfFreeRoomsAfterRezervationByType(roomtype, checkin, checkout);
     }
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/freerooms/{roomtype}")
     public FreeRoomsByTypeHelper getFreeRoomsByType(@PathVariable String roomtype) {
         return roomService.getNrOfFreeRoomsByType(roomtype);
