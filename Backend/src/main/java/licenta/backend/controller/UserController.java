@@ -3,21 +3,17 @@ package licenta.backend.controller;
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.*;
 import licenta.backend.model.Erole;
-import licenta.backend.model.Rezervation;
 import licenta.backend.model.User;
 import licenta.backend.payload.response.MessageResponse;
 import licenta.backend.service.EmailService;
 import licenta.backend.service.RezervationService;
 import licenta.backend.service.UserService;
-
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 

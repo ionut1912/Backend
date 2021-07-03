@@ -4,12 +4,10 @@ import licenta.backend.helpers.FreeRoomsByType;
 import licenta.backend.helpers.NrOfReservationsHelper;
 import licenta.backend.helpers.ReservationsByType;
 import licenta.backend.model.RoomReservation;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 

@@ -1,7 +1,5 @@
 package licenta.backend.helpers;
 
-import java.util.List;
-
 public class RoomHelper {
     public String name;
     public String roomtype;

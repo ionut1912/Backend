@@ -1,15 +1,11 @@
 package licenta.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
-import  java.util.Date;
 
 @Entity
 

@@ -14,15 +14,18 @@ public class UserReviewService {
     @Resource
     UserReviewRepository userReviewRepository;
 
+
     public List<ReviewDetails> getAll(int id) {
         return userReviewRepository.getReviews(id);
     }
+
     public UserReview save(UserReview userreview) {
 
-        return userReviewRepository.save(userreview);
+         return    userReviewRepository.save(userreview);
     }
-    public List<UserRoomHelper> getRoomsReviewed(Long id){
-      return   userReviewRepository.getRoomsReviewed(id);
+
+    public List<UserRoomHelper> getRoomsReviewed(Long id) {
+        return userReviewRepository.getRoomsReviewed(id);
     }
 }
 

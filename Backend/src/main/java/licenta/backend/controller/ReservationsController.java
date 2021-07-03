@@ -3,21 +3,15 @@ package licenta.backend.controller;
 import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.*;
 import licenta.backend.model.Rezervation;
-import licenta.backend.model.Room;
 import licenta.backend.model.RoomReservation;
+import licenta.backend.payload.response.MessageResponse;
 import licenta.backend.service.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.annotation.Resource;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -47,6 +41,7 @@ public class ReservationsController {
         rezervation.setRoomReservations(reservations);
 
         roomReservation.setRezervation(rezervation);
+
         emailService.sendMail(helper.getEmail(), "Rezervarea a fost realizata", "Buna ziua! Rezervarea dumneavoastra a fost creata cu succes pe data de " + helper.getCheckin() + " . Va asteptam!");
 
         rezervationService.save(rezervation);
@@ -72,8 +67,11 @@ public class ReservationsController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @PatchMapping("/{id}")
-    public ResponseEntity<Rezervation> updateRezervation(@PathVariable Long id, @RequestBody ReservationHelper rezervation) {
+    public ResponseEntity<?> updateRezervation(@PathVariable Long id, @RequestBody ReservationHelper rezervation) {
+       List<AvailableRoomsHelper> availableRoomsHelpers=roomService.availableRooms(id);
         Rezervation rezervation1 = rezervationService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Rezervarea cu id-ul " + id + " nu exista"));
+       if((availableRoomsHelpers.size()>1)&&(!((rezervation1.getCheckin().compareTo(rezervation.getCheckin())<0 && rezervation1.getCheckout().compareTo(rezervation.getCheckin())<0)||(rezervation1.getCheckin().compareTo(rezervation.getCheckout())>0 && rezervation1.getCheckout().compareTo(rezervation.getCheckout())>0))))
+           return ResponseEntity.badRequest().body(new MessageResponse("Camera nu este disponibila in perioada selectata"));
         rezervation1.setName(rezervation.getName());
         rezervation1.setEmail(rezervation.getEmail());
         rezervation1.setRoomtype(rezervation.getRoomtype());

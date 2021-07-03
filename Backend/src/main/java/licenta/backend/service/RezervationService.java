@@ -7,8 +7,6 @@ import licenta.backend.repository.RezervationRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

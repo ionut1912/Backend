@@ -1,16 +1,12 @@
 package licenta.backend.service;
 
-import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.*;
 import licenta.backend.model.User;
 import licenta.backend.repository.UserRepository;
-
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 
 import javax.annotation.Resource;
 import java.util.List;

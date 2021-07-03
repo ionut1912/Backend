@@ -45,7 +45,8 @@ public class AuthController {
     @Resource
 
     JwtUtils jwtUtils;
-
+@Resource
+    EmailService emailService;
 
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

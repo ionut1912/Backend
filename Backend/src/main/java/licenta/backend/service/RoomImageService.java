@@ -5,7 +5,6 @@ import licenta.backend.repository.RoomImageRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.persistence.Lob;
 import java.util.List;
 import java.util.Optional;
 

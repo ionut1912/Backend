@@ -28,6 +28,9 @@ List<RoomDetails> getRommInfoNotRezerved();
 FreeRoomsByTypeHelper getNrOfFreeRoomsAfterReservationByType(String roomtype, Date checkin, Date checkout);
 @Query(value = "select count(roomid) as nroffreerooms from rooms where (roomtype=?1 and roomid in (select roomid from rooms where roomid not in(select roomid from roomreservations)))",nativeQuery = true)
  FreeRoomsByTypeHelper getNrOfFreeRoomsByType(String  roomtype);
+@Query(value = "select rooms.roomid,checkin,checkout from rooms inner join roomreservations on rooms.roomid=roomreservations.roomid \n" +
+        "where (rooms.roomid=?1 and rooms.roomid in (select roomid from roomreservations)) ",nativeQuery = true)
+    List<AvailableRoomsHelper> findAvailableRoom(long id);
 }
 
 

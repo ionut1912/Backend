@@ -5,9 +5,11 @@ import licenta.backend.exception.ResourceNotFoundException;
 import licenta.backend.helpers.*;
 import licenta.backend.model.Room;
 import licenta.backend.model.RoomImages;
-import licenta.backend.service.*;
+import licenta.backend.service.RoomImageService;
+import licenta.backend.service.RoomReservationService;
+import licenta.backend.service.RoomService;
+import licenta.backend.service.UserService;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +49,7 @@ public class ManageRoomController {
         return this.roomService.getPrice(checkin, checkout, id);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @GetMapping("/all")
     public List<Room> getAll() {
         return roomService.findAll();
@@ -140,7 +142,7 @@ public class ManageRoomController {
     public FreeRoomsByTypeHelper getFreeRoomsByTypeAfterReservation(@PathVariable String roomtype, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout) {
         return roomService.getNrOfFreeRoomsAfterRezervationByType(roomtype, checkin, checkout);
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/freerooms/{roomtype}")
     public FreeRoomsByTypeHelper getFreeRoomsByType(@PathVariable String roomtype) {
         return roomService.getNrOfFreeRoomsByType(roomtype);

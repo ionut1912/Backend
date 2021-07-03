@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-import java.security.PublicKey;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +65,9 @@ public FreeRoomsByTypeHelper getNrOfFreeRoomsAfterRezervationByType(String roomt
 public  FreeRoomsByTypeHelper getNrOfFreeRoomsByType(String roomtype)
 {
         return  roomRepository.getNrOfFreeRoomsByType(roomtype);
+}
+public  List<AvailableRoomsHelper> availableRooms(long id){
+        return  roomRepository.findAvailableRoom(id);
 }
 }
 
