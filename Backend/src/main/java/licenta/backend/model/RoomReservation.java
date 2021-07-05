@@ -10,20 +10,7 @@ import java.util.Date;
 @Table(name = "roomreservations")
 
 public class RoomReservation {
-    @Override
-    public String toString() {
-        return "RoomReservation{" +
-                "roomreservationsid=" + roomreservationsid +
-                ", room=" + room +
 
-                ", rezervation=" + rezervation +
-                ", checkin=" + checkin +
-                ", checkout=" + checkout +
-                ", noofrooms=" + noofrooms +
-                ", noofadults=" + noofadults +
-                ", noofchildrens=" + noofchildrens +
-                '}';
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

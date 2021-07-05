@@ -48,12 +48,11 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PatchMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id,@RequestBody UserHelper user) {
         User user1=userService.findById(id).orElseThrow(()->new ResourceNotFoundException("User-ul cu id-ul " + id + " nu exista" ));
-        user1.setName(user.getName());
-        user1.setEmail(user.getEmail());
-        user1.setUsername(user.getUsername());
+
         user1.setType(user.getType());
         User modifieduser=userService.save(user1);
         return  ResponseEntity.ok(modifieduser);
@@ -83,12 +82,8 @@ public class UserController {
 
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-@DeleteMapping("/{id}")
-public  void deleteUser(@PathVariable Long id){
-        this.userService.deleteUser(id);
-}
-@PreAuthorize("hasRole('ROLE_USER')")
+
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user1/{username}")
     public UserData getUserData(@PathVariable String username) {
         return userService.getData(username);
