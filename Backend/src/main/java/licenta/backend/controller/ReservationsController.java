@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("/reservations")
 public class ReservationsController {
 
-
     @Resource
     RezervationService rezervationService;
     @Resource

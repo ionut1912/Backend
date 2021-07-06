@@ -106,18 +106,6 @@ public class ManageRoomController {
 
     }
 
-    @PatchMapping("/images/{id}")
-    public ResponseEntity<RoomImages> updateImage(@PathVariable Long id, @RequestBody ImageHelper images) {
-        RoomImages roomImages1 = roomImageService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Imaginea cu id-ul" + id + " nu exista"));
-        for (int i = 0; i < images.getImagepath().length; i++) {
-            roomImages1.setImagepath(images.getImagepath()[i]);
-
-
-        }
-        RoomImages modifiedImage = roomImageService.save(roomImages1);
-        return ResponseEntity.ok(modifiedImage);
-    }
-
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
@@ -125,12 +113,13 @@ public class ManageRoomController {
         roomService.deleteRoombyId(id);
     }
 
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/nrofrooms")
     public NrOfRoomsHelper getNrOfRooms() {
         return roomService.getNrOfRooms();
 
     }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/nrroomsbytype")
     public List<NrRoomsByType> getNrOfRoomsByType() {
@@ -142,6 +131,7 @@ public class ManageRoomController {
     public FreeRoomsByTypeHelper getFreeRoomsByTypeAfterReservation(@PathVariable String roomtype, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkin, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkout) {
         return roomService.getNrOfFreeRoomsAfterRezervationByType(roomtype, checkin, checkout);
     }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/freerooms/{roomtype}")
     public FreeRoomsByTypeHelper getFreeRoomsByType(@PathVariable String roomtype) {

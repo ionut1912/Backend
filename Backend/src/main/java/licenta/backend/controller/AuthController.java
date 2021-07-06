@@ -9,7 +9,6 @@ import licenta.backend.payload.request.SignupRequest;
 import licenta.backend.payload.response.JwtResponse;
 import licenta.backend.payload.response.MessageResponse;
 import licenta.backend.repository.UserRepository;
-import licenta.backend.service.EmailService;
 import licenta.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,8 +44,7 @@ public class AuthController {
     @Resource
 
     JwtUtils jwtUtils;
-@Resource
-    EmailService emailService;
+
 
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
